@@ -1,0 +1,23 @@
+---
+title: "Kaelyn Marquez"
+subtitle: "Student"
+# `profile.jpg` photo by Jan Tinneberg on https://unsplash.com
+image: profile.jpeg
+about: # https://quarto.org/docs/websites/website-about.html
+  template: solana
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/kmarquez1
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/kaelyn-marquez-833a1235a/
+---
+
+## Education
+
+California State University, Fullerton \| Fullerton, CA \| Aug 2021 - May 2025
+
+## Research Experience
+
+Socal Data Science Program \| Undergraduate Data Science Researcher \| Jan 2024 - July 2024
