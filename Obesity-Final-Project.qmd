@@ -75,6 +75,7 @@ obesity <- read_csv("ObesityDataSet_raw_and_data_sinthetic.csv")
 ## Data Wrangling (Optional Section)
 
 ```{r}
+#| label: splitting data 
 # converting character variables to factors
 obesity <- obesity |>
   mutate(across(where(is.character), as.factor))
@@ -105,6 +106,7 @@ obesity_train |>
 ## Exploratory Data Analysis
 
 ```{r}
+#| label: obesity categories
 ggplot(obesity_train, 
        aes(x = NObeyesdad)) +
   geom_bar(fill = "lightblue") +
@@ -115,6 +117,19 @@ ggplot(obesity_train,
 ```
 
 ```{r}
+ggplot(obesity_train, 
+       aes(x = NObeyesdad, y = Weight)) +
+  geom_boxplot(fill = "purple") +
+  labs(
+    title = "Weight Distribution by Obesity Category",
+    x = "Obesity Category",
+    y = "Weight (kg)"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+#| label: alcohol and obesity categories
 ggplot(obesity_train,
        aes(x = NObeyesdad, fill = CALC)) +
   geom_bar(position = "dodge") +
@@ -127,6 +142,7 @@ ggplot(obesity_train,
 ```
 
 ```{r}
+#| label: smoking and obesity categories
 ggplot(obesity_train,
        aes(x = NObeyesdad, fill = SMOKE)) +
   geom_bar(position = "dodge") +
@@ -139,6 +155,7 @@ ggplot(obesity_train,
 ```
 
 ```{r}
+#| label: physical activity and obesity category 
 ggplot(obesity_train,
        aes(x = NObeyesdad,
            y = FAF)) +
@@ -152,6 +169,7 @@ ggplot(obesity_train,
 ```
 
 ```{r}
+#| label: number summary 
 obesity_train |>
   group_by(NObeyesdad) |>
   summarize(
@@ -167,6 +185,7 @@ obesity_train |>
 ```
 
 ```{r}
+#| label: weight and height with obesity category 
 ggplot(
   obesity_train, 
   aes(x = Height,
@@ -183,6 +202,7 @@ ggplot(
 ```
 
 ```{r}
+#| label: number of main meals and obesity category 
 ggplot(
   obesity_train, 
   aes(x = NCP)
@@ -195,6 +215,7 @@ ggplot(
 ```
 
 ```{r}
+#| label: main meals and obesity category 
 ggplot(obesity_train, aes(x = NObeyesdad, 
                           y = NCP)) +
   geom_boxplot(fill = "lavender") +
@@ -207,6 +228,7 @@ ggplot(obesity_train, aes(x = NObeyesdad,
 ```
 
 ```{r}
+#| label: family history of overweight 
 ggplot(obesity_train, 
        aes(x = NObeyesdad, 
            fill = hist_overweight)) +
@@ -358,7 +380,21 @@ lasso_wflow_final <- lasso_wflow |>
 
 lasso_fit <- lasso_wflow_final |>
   fit(data = obesity_train)
+lasso_best
 ```
+
+The best penalty value selected by cross-validation was approximately 2.08e-10. Since this value is very small, it means the model applied only a small amount of shrinkage, allowing most of the predictors to remain in the model. This suggests that many variables in the dataset were helpful for predicting obesity categories, and not many were removed by LASSO.
+
+```{r}
+# Plot coefficient paths across penalty values
+lasso_fit |> 
+  extract_fit_engine() |> 
+  plot(xvar = "lambda", label = TRUE)
+```
+
+The coefficient path plots show how the values of different predictors change as the penalty term increases. As the penalty increases (moving left to right), the model applies more shrinkage, and many coefficients are pulled closer to zero. This is how LASSO performs variable selection.
+
+In my case, most predictors stayed close to zero early on, meaning they weren\'t very strong. However, some predictors remained further from zero longer, suggesting they were more important in predicting that specific obesity category. By looking at these plots, I was able to confirm that LASSO kept only the most useful predictors while filtering out the rest.
 
 After fitting the model, I extracted the coefficients and focused on `SMOKE` and `CALC` to see if they were selected by LASSO.
 
@@ -416,6 +452,16 @@ ggplot(obesity_train,
 
 These plots show the relationship between alcohol use, smoking and obesity categories. In the first graph people who drink alcohol "sometimes" make up a large portion of the higher obesity categories, especially Obesity Type III and Overweight Level I. In the second graph, smokers make up a small portion of the dataset overall, but they appear slightly more in some obesity categories like Obesity Type I and II.
 
-In both the multinomial and LASSO models, smoking and not drinking alcohol were selected as predictors in a few obesity categories. However, LASSO removed many of the related terms, and other variables like diet, physical activity, and family history were kept more consistently. So while smoking and alcohol show some connection to obesity, the models suggest they're not the strongest predictors on their own. This hightlights that these habits might play a role, but they work alongside many other factors when it comes to predicting obesity.
+In both the multinomial and LASSO models, smoking and not drinking alcohol were selected as predictors in a few obesity categories. However, LASSO removed many of the related terms, and other variables like diet, physical activity, and family history were kept more consistently. So while smoking and alcohol show some connection to obesity, the models suggest they're not the strongest predictors on their own. This highlights that these habits might play a role, but they work alongside many other factors when it comes to predicting obesity.
 
 ### Limitations and Future Work
+
+Even though the models in this project did really well overall, there are still a few important limitations. One of the main things is that it\'s hard to tell how much smoking and alcohol really affect obesity on their own. Since the models included a bunch of other lifestyle factors, it\'s not easy to separate out their impact. SMOKE and CALC showed up as important in some categories, but not all, and LASSO even removed a few of them completely. That makes it seem like they might not be super strong predictors by themselves, or maybe their effect depends on other things like diet or physical activity.
+
+Another thing I ran into is that the dataset doesn\'t explain what the different obesity categories actually mean even though at first I thought it did. It uses labels like \"Obesity_Type_I\" and \"Overweight_Level_II,\" but there\'s no clear definition of what those mean or how different they are. That made it harder to really understand how serious each group is or what separates one from another.
+
+Also, the data is self-reported, which isn\'t always reliable. People might leave things out or answer in a way that sounds better, especially for questions about smoking, drinking, or eating habits. On top of that, a lot of the data was synthetically generated using SMOTE (Synthetic Minority Oversampling TEchnique) to balance out the categories. That helps with modeling, but it might not reflect real-world responses as well as actual survey data.
+
+LASSO helped clean up the model by removing predictors that weren\'t as helpful, but it didn\'t shrink that many variables to zero. That could mean the variables really were useful, or that the penalty wasn\'t strong enough to force more selection. Trying other models in the future, like decision trees or random forests, could help show which variables are actually the most important for predicting obesity. But for this project, the main goal was just to see whether smoking and alcohol had any noticeable connection to obesity, and both models helped explore that.
+
+In the future, it would help to have a dataset with more detailed health and lifestyle information, and one that clearly defines the outcome labels. And since this project is about people\'s health, it\'s important to use results like these to support and inform---not to label or judge anyone.
