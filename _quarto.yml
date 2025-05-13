@@ -10,7 +10,7 @@ website:
     contents:
       - text: Home
         href: index.qmd
-      - finalproject.qmd
+      - Obesity-Final-Project.qmd
       
 format:
   html:

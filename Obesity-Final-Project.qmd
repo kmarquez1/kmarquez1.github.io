@@ -1,0 +1,421 @@
+---
+title: "Understanding the Impact of Alcohol and Smoking on Obesity Levels"
+---
+
+## Motivation and Context
+
+This project explores how lifestyle habits like drinking alcohol and smoking may be related to different levels of obesity. Obesity is a major health concern that can lead to serious conditions such as heart disease, diabetes, and certain types of cancer. While many factors can affect a person's weight, behaviors like drinking and smoking are common and often overlooked when it comes to their possible impact on health.
+
+I chose this topic because it connects real world health issues with data analysis. I wanted to better understand whether habits like alcohol use or smoking are linked to obesity, and if so, how strong those connections are. This kind of information can be helpful not just for individuals who want to learn more about their own health, but also for doctors, public health professionals, or policy makers who want to support healthier communities. By using data and statistical models, this project aims to uncover patters that can make those links clearer and more understandable.
+
+In this dataset, obesity is divided into seven categories based on physical characteristics like weight and height. These categories are: Insufficient Weight, Normal Weight, Overweight Level I, Overweight Level II, Obesity Type I, Obesity Type II, and Obesity Type III. These categories are based on body measurements like weight and height, similar to how Body Mass Index (BMI) is used in medical setting. For example, "Normal Weight" represents a healthy range, while "Overweight Levels I and II" suggest increasing excess weight. "Obesity Types I, II, and III" indicate progressively higher degrees of obesity, with Type III being the most extreme. Understanding how lifestyle behaviors show up across these categories can help reveal what role habits like drinking and smoking might play in influencing a person's weight and overall health.
+
+```{r}
+#| label: do this first
+#| echo: false
+#| message: false
+
+here::i_am("Obesity-Final-Project.qmd")
+```
+
+## Main Objective
+
+The main goal of this project is to investigate how alcohol consumption and smoking relate to obesity levels. I wanted to see whether these habits are useful for predicting which obesity category a person falls into, and whether they still matter when other lifestyle variables are also considered. By analyzing these variables in full models, the project uncovers patterns that show how everyday decisions may relate to obesity risk.
+
+This analysis is meant to provide insight into whether drinking and smoking are just common lifestyle factors or if they actually contribute to higher obesity risk. The findings could be helpful for individuals trying to make healthier choices, as well as for professionals working in health education or policy. By identifying which habits are most strongly associated with obesity, the project hopes to support more informed decisions around personal help and public wellness.
+
+## Packages Used In This Analysis
+
+```{r}
+#| label: load packages
+#| message: false
+#| warning: false
+
+library(here)
+library(readr)
+library(dplyr)
+library(ggplot2)
+library(rsample)
+library(dplyr)
+library(naniar)
+library(tidymodels)
+library(nnet)
+library(tibble)
+library(yardstick)
+library(broom)
+library(glmnet)
+```
+
+| Package                                      | Use                                           |
+|------------------------------------|------------------------------------|
+| [here](https://github.com/jennybc/here_here) | to easily load and save data                  |
+| [readr](https://readr.tidyverse.org/)        | to import the CSV file data                   |
+| [dplyr](https://dplyr.tidyverse.org/)        | to massage and summarize data                 |
+| [rsample](https://rsample.tidymodels.org/)   | to split data into training and test sets     |
+| [naniar](https://rpubs.com/jlv7cr/750220)    | to check for missing values                   |
+| [ggplot2](https://ggplot2.tidyverse.org/)    | to create nice-looking and informative graphs |
+
+## Data Description
+
+The data used in this project comes from the UCI Machine Learning Repository, and it is titled Estimation of Obesity Levels Based on Eating Habits and Physical Condition. This dataset can be accessed [here](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition). The dataset was created by researchers Fabio Palechor and Alexis de la Hoz Manotas and published around 2018. The data was collected using a web based survey where anonymous individuals from Mexico, Peru and Colombia reported information about their lifestyle habits and physical conditions. Participants were between the ages of 14 and 61 and answered questions related to eating behavior, exercise, water intake, alcohol consumption, smoking and more.
+
+The goal of the original study was to explore the relationship between these lifestyle factors and obesity. In total, the dataset includes 2,111 observations with 17 variables. The target variable, `NObeyesdad`, classifies individuals into one of the seven categories that range from nsufficient Weight to Obesity Type III. These categories are based on physical measurements like height and weight and are structured similarly to BMI-based classifications.
+
+To improve class balance, the researches used SMOTE (Synthetic Minority Over-sampling Technique) in Weka to generate 77% of the data synthetically. The remaining 23% comes from real survey responses. SMOTE helps ensure that all obesity categories are well represented in the data, which can help models perform more reliably across all classes.
+
+```{r}
+#| label: import data
+#| warning: false
+library(readr)
+obesity <- read_csv("ObesityDataSet_raw_and_data_sinthetic.csv")
+```
+
+### Data Limitations
+
+## Data Wrangling (Optional Section)
+
+```{r}
+# converting character variables to factors
+obesity <- obesity |>
+  mutate(across(where(is.character), as.factor))
+
+# splitting data
+set.seed(12345)
+
+obesity_split <- initial_split(obesity, prop = 0.80)
+obesity_train <- training(obesity_split)
+obesity_test <- testing(obesity_split)
+
+obesity_train <- obesity_train |>
+  rename(hist_overweight = family_history_with_overweight)
+
+obesity_test <- obesity_test |>
+  rename(hist_overweight = family_history_with_overweight)
+```
+
+```{r}
+#| label: checking for missing data
+total_missing <- sum(is.na(obesity_train))
+total_missing
+
+obesity_train |>
+  miss_var_summary()
+```
+
+## Exploratory Data Analysis
+
+```{r}
+ggplot(obesity_train, 
+       aes(x = NObeyesdad)) +
+  geom_bar(fill = "lightblue") +
+  labs(title = "Count of Individuals by Obesity Category",
+       x = "Obesity Category",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+ggplot(obesity_train,
+       aes(x = NObeyesdad, fill = CALC)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Alcohol Consumption by Obesity Category",
+    x = "Obesity Category",
+    y = "Count",
+    fill = "Alcohol Consumption"
+  ) + theme(axis.text.x = element_text(angle = 45, hjust = 1 ))
+```
+
+```{r}
+ggplot(obesity_train,
+       aes(x = NObeyesdad, fill = SMOKE)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Proportion of Smokers by Obesity Category",
+    x = "Obesity Category",
+    y = "Count",
+    fill = "Smoke"
+  ) + theme(axis.text.x = element_text(angle = 45, hjust = 1 ))
+```
+
+```{r}
+ggplot(obesity_train,
+       aes(x = NObeyesdad,
+           y = FAF)) +
+  geom_boxplot(fill = "lightpink") +
+  labs(
+    title = "Physical Activity (FAF) by Obesity Category",
+    x = "Obesity Category",
+    y = "Physical Activity Frequency (FAF)"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+obesity_train |>
+  group_by(NObeyesdad) |>
+  summarize(
+    total = n(),
+    min = min(FAF, na.rm = TRUE),
+    Q1 = quantile(FAF, 0.25, na.rm = TRUE),
+    median = median(FAF, na.rm = TRUE),
+    Q3 = quantile(FAF, 0.75, na.rm = TRUE),
+    max = max(FAF, na.rm = TRUE),
+    mean = mean(FAF, na.rm = TRUE),
+    sd = sd(FAF, na.rm = TRUE)
+  )
+```
+
+```{r}
+ggplot(
+  obesity_train, 
+  aes(x = Height,
+      y = Weight, 
+      color = NObeyesdad)) +
+  geom_point(alpha = 0.7) +
+  labs(
+    title = "Height vs. Weight by Obesity Category",
+    x = "Height (m)",
+    y = "Weight (kg)",
+    color = "Obesity Category"
+  ) +
+  theme(legend.position = "right")
+```
+
+```{r}
+ggplot(
+  obesity_train, 
+  aes(x = NCP)
+) + geom_histogram(binwidth = 1, fill = "skyblue", color = "black") +
+  labs(
+    title = "Distribution of Number of Main Meals (NCP)",
+    x = "Number of Main Meals",
+    y = "Count"
+  )
+```
+
+```{r}
+ggplot(obesity_train, aes(x = NObeyesdad, 
+                          y = NCP)) +
+  geom_boxplot(fill = "lavender") +
+  labs(
+    title = "Number of Main Meals (NCP) by Obesity Category",
+    x = "Obesity Category",
+    y = "Number of Main Meals (NCP)"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+ggplot(obesity_train, 
+       aes(x = NObeyesdad, 
+           fill = hist_overweight)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Family History of Overweight by Obesity Category",
+    x = "Obesity Category",
+    y = "Count",
+    fill = "Family History"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+ggplot(obesity_train, 
+       aes(x = NObeyesdad, fill = FAVC)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "High-Calorie Food Consumption (FAVC) by Obesity Category",
+    x = "Obesity Category",
+    y = "Count",
+    fill = "FAVC"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+ggplot(obesity_train, aes(x = NObeyesdad, y = FCVC)) +
+  geom_boxplot(fill = "lightgreen") +
+  labs(
+    title = "Vegetable Consumption (FCVC) by Obesity Category",
+    x = "Obesity Category",
+    y = "Frequency of Vegetable Consumption"
+  ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+ggplot(obesity_train, aes(x = NObeyesdad, fill = CAEC)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Eating Between Meals (CAEC) by Obesity Category",
+    x = "Obesity Category",
+    y = "Count",
+    fill = "CAEC"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Modeling
+
+**Multinomial Logistic Regression**
+
+In this section, I build and evaluate models to predict an individual's obesity category based on their lifestyle habits. I start with a multinomial logistic regression model because it allows me to model a categorical outcome with more than two classes. This model is also interpretable because it provides coefficients that show how predictors affect the odds of being in a specific obesity category compared to a reference group. This helps me understand how variables like alcohol consumption (`CALC`) and smoking (`SMOKE`) are related to different obesity levels and whether those behaviors are associated with increased risk.
+
+```{r}
+# make sure outcome variable is a factor
+obesity_train$NObeyesdad <- as.factor(obesity_train$NObeyesdad)
+obesity_test$NObeyesdad <- as.factor(obesity_test$NObeyesdad)
+```
+
+```{r}
+#| message: false
+#| warning: false
+# all predictors to model the 7-category outcome
+multinom_model <- multinom(NObeyesdad ~ ., data = obesity_train)
+tidy(multinom_model)
+```
+
+```{r}
+# predict on obesity category for each oberservation
+multinom_preds <- predict(multinom_model, newdata = obesity_test)
+
+# results tibble true and predicted labels 
+multinom_results <- tibble(
+  truth = obesity_test$NObeyesdad,
+  prediction = multinom_preds
+)
+
+# evaluate the model performance
+conf_mat(multinom_results, truth = truth, estimate = prediction)
+```
+
+Based on the confusion matrix, the model did a really good job predicting most of the obesity categories correctly. It was especially accurate for Obesity Type I, II, and III, where the predictions were almost perfect. There were a few mistakes, mainly between categories that are close to each other, like Normal Weight being confused with Overweight Level I or Overweight Level II being confused with Obesity Type I. That kind of mix-up makes sense since those groups might have similar habits or measurements. Overall, the model is performing very well across all obesity categories.
+
+```{r}
+accuracy(multinom_results, truth = truth, estimate = prediction)
+```
+
+I used accuracy and a confusion matrix to evaluate how well the model performed. Accuracy is a common and simple metric that tells me what proportion of the predictions were correct overall. It's calculated by dividing the number of correct predictions by the total number of predictions. I also included a confusion matrix because accuracy alone doesn't always show how the model did for each specific class. The confusion matrix helps me see which categories were predicted correctly and which ones the model mixed up, so I can tell if it's doing well across all obesity levels.
+
+```{r}
+#| message: false
+#| warning: false
+tidy_multinom <- tidy(multinom_model)
+smoke_calc <- tidy_multinom |>
+  filter(term %in% c("SMOKEyes", "CALCno", "CALCsometimes", "CALCalways"))
+smoke_calc
+```
+
+The model shows that both smoking and alcohol habits are related to obesity. The coefficients for `SMOKEyes` were large and positive across all categories, meaning smokers had much higher odds of being classified as overweight or obese compared to the baseline group. For alcohol, the results were more surprising. People who said they don't drink (`CALCno`) also had higher odds of being classified in an obesity category. This might be due to how alcohol use is reported or other lifestyle factors in the data. Overall, both variables were statistically significant and stood out as important predictors in the model.
+
+Even though my main goal was to understand the impact of smoking and alcohol on obesity, I included other lifestyle variables in the model because they can also affect weight. This makes the model more realistic and helps me see whether smoking and alcohol still matter when everything else is taken into account. Based on the results, both `SMOKE` and `CALC` were still strong predictors even after controlling for things like exercise, diet, and family history.
+
+**LASSO**
+
+To complement the multinomial regression model, I also use a LASSO model. LASSO works by shrinking the coefficients of less important predictors all the way to zero. This means it automatically removes variables that don't contribute to much to predicting the outcome. I wanted to see if whether smoking and alcohol consumption would still be selected as important predictors after the model was simplified.
+
+I created the model, recipe and workflow as shown below. Categorical variables were converted into dummy variables and all numeric variables were standardized to the same scale since LASSO is sensitive to variable scaling.
+
+```{r}
+lasso_model <- multinom_reg(mode = "classification", engine = "glmnet",
+                          penalty = tune(),
+                          mixture = 1) # 1 is LASSO
+
+lasso_recipe <- recipe(NObeyesdad ~ ., data = obesity_train) |>
+  step_dummy(all_nominal_predictors()) |> # since they are categorical 
+  step_normalize(all_numeric_predictors()) # same scale 
+
+lasso_wflow <- workflow() |>
+  add_model(lasso_model) |>
+  add_recipe(lasso_recipe)
+```
+
+I used 5 fold cross validation to tune the penalty parameter. I tested 25 (arbitrarily) different values and selected the final model using the one-standard-error rule, which prefers a simpler model that still performs well.
+
+```{r}
+#| message: false
+#| warning: false
+set.seed(12345)
+cv_folds <- vfold_cv(obesity_train, v = 5)
+
+lasso_tune <- tune_grid(
+  lasso_wflow,
+  resamples = cv_folds,
+  grid = 25  # different values
+)
+```
+
+```{r}
+#| message: false
+#| warning: false
+lasso_best <- lasso_tune |>
+  select_by_one_std_err(penalty, desc(penalty))
+
+lasso_wflow_final <- lasso_wflow |>
+  finalize_workflow(parameters = lasso_best) 
+
+lasso_fit <- lasso_wflow_final |>
+  fit(data = obesity_train)
+```
+
+After fitting the model, I extracted the coefficients and focused on `SMOKE` and `CALC` to see if they were selected by LASSO.
+
+```{r}
+lasso_coef <- lasso_fit |>
+  broom::tidy()
+lasso_coef 
+```
+
+LASSO didn't shrink that many coefficients to zero, which suggests that a lot of the variables in the dataset are actually useful for predicting obesity categories. This makes sense since the model is trying to classify people into seven different groups, so it needs a range of information to do that well. Even with regularization, LASSO still kept variables like smoking and alcohol, which shows they're important predictors. The fact that many variables were kept means the model may be capturing more complex relationships between lifestyle habits and obesity levels.
+
+```{r}
+lasso_coef |>
+  filter(term %in% c("SMOKE_yes", "CALC_no", "CALC_always", "CALC_sometimes"))
+
+```
+
+After using LASSO, only the CALC_no variable was kept in the model. The other alcohol-related categories like CALC_always and CALC_sometimes were removed, meaning they didn't provide enough useful information for predicting obesity categories. This shows that not drinking alcohol had more predictive value than drinking occasionally or always, at least in this dataset.
+
+```{r}
+lasso_preds <- predict(lasso_fit, new_data = obesity_test) |>
+  bind_cols(obesity_test)
+
+accuracy(lasso_preds, truth = NObeyesdad, estimate = .pred_class)
+conf_mat(lasso_preds, truth = NObeyesdad, estimate = .pred_class)
+```
+
+The LASSO model had an accuracy of about 96.2%, meaning it correctly predicted the obesity category for most of the people in the test set. This is a strong result, especially since there are seven different categories. It shows that even with regularization and some coefficients being removed, the model still did a really good job at classifying individuals based on their lifestyle habits.
+
+## Insights
+
+```{r}
+ggplot(obesity_train,
+       aes(x = NObeyesdad, fill = CALC)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Alcohol Consumption by Obesity Category",
+    x = "Obesity Category",
+    y = "Count",
+    fill = "Alcohol Consumption"
+  ) + theme(axis.text.x = element_text(angle = 45, hjust = 1 ))
+```
+
+```{r}
+ggplot(obesity_train,
+       aes(x = NObeyesdad, fill = SMOKE)) +
+  geom_bar(position = "dodge") +
+  labs(
+    title = "Proportion of Smokers by Obesity Category",
+    x = "Obesity Category",
+    y = "Count",
+    fill = "Smoke"
+  ) + theme(axis.text.x = element_text(angle = 45, hjust = 1 ))
+```
+
+These plots show the relationship between alcohol use, smoking and obesity categories. In the first graph people who drink alcohol "sometimes" make up a large portion of the higher obesity categories, especially Obesity Type III and Overweight Level I. In the second graph, smokers make up a small portion of the dataset overall, but they appear slightly more in some obesity categories like Obesity Type I and II.
+
+In both the multinomial and LASSO models, smoking and not drinking alcohol were selected as predictors in a few obesity categories. However, LASSO removed many of the related terms, and other variables like diet, physical activity, and family history were kept more consistently. So while smoking and alcohol show some connection to obesity, the models suggest they're not the strongest predictors on their own. This hightlights that these habits might play a role, but they work alongside many other factors when it comes to predicting obesity.
+
+### Limitations and Future Work
