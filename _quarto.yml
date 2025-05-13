@@ -9,15 +9,16 @@ website:
   title: "Home"
   open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
   page-footer: "Made with ❤️ and Quarto"
-  sidebar:
-    contents:
+  navbar:
+    background: "pink"
+    left:
       - text: Home
         href: index.qmd
       - Obesity-Final-Project.qmd
       
 format:
   html:
-    backgroundcolor: "lightpink"
+    backgroundcolor: "White"
     linkcolor: "hotpink"
     mainfont: "mono"
     theme: [cosmo, styles.scss]
