@@ -46,14 +46,19 @@ library(broom)
 library(glmnet)
 ```
 
-| Package                                      | Use                                           |
+| Package                                      | Use                                                  |
 |------------------------------------|------------------------------------|
-| [here](https://github.com/jennybc/here_here) | to easily load and save data                  |
-| [readr](https://readr.tidyverse.org/)        | to import the CSV file data                   |
-| [dplyr](https://dplyr.tidyverse.org/)        | to massage and summarize data                 |
-| [rsample](https://rsample.tidymodels.org/)   | to split data into training and test sets     |
-| [naniar](https://rpubs.com/jlv7cr/750220)    | to check for missing values                   |
-| [ggplot2](https://ggplot2.tidyverse.org/)    | to create nice-looking and informative graphs |
+| [here](https://github.com/jennybc/here_here) | to easily load and save data                         |
+| [readr](https://readr.tidyverse.org/)        | to import the CSV file data                          |
+| [dplyr](https://dplyr.tidyverse.org/)        | to massage and summarize data                        |
+| [rsample](https://rsample.tidymodels.org/)   | to split data into training and test sets            |
+| [naniar](https://rpubs.com/jlv7cr/750220)    | to check for missing values                          |
+| [ggplot2](https://ggplot2.tidyverse.org/)    | to create nice-looking and informative graphs        |
+| nnet                                         | to fit multinomial logistic regression               |
+| tibble                                       | to create and manipulate tidy data frames            |
+| yarstick                                     | to calculate model performance metrics like accuracy |
+| broom                                        | to tidy up model output for easier interpretation    |
+| glmnet                                       | to fit LASSO models using regularization             |
 
 ## Data Description
 
