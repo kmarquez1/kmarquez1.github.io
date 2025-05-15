@@ -10,15 +10,19 @@ website:
   open-graph: true # https://quarto.org/docs/websites/website-tools.html#open-graph
   page-footer: "Made with ❤️ and Quarto"
   navbar:
-    background: "pink"
+    background: "#e6e6fa"
+    title: Kaelyn Marquez
     left:
-      - text: Home
-        href: index.qmd
-      - Obesity-Final-Project.qmd
+      - href: Obesity-Final-Project.qmd
+        text: Final Project
       
 format:
   html:
-    backgroundcolor: "White"
-    linkcolor: "hotpink"
-    mainfont: "mono"
-    theme: [cosmo, styles.scss]
+    backgroundcolor: "lavenderblush"
+    linkcolor: "deeppink"
+    mainfont: "Atkinson Hyperlegible"
+    theme: [flatly, styles.scss]
+    toc: true
+    toc-location: left
+    toc-depth: 2
+    

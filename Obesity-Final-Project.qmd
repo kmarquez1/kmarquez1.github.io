@@ -6,9 +6,9 @@ title: "Understanding the Impact of Alcohol and Smoking on Obesity Levels"
 
 This project explores how lifestyle habits like drinking alcohol and smoking may be related to different levels of obesity. Obesity is a major health concern that can lead to serious conditions such as heart disease, diabetes, and certain types of cancer. While many factors can affect a person's weight, behaviors like drinking and smoking are common and often overlooked when it comes to their possible impact on health.
 
-I chose this topic because it connects real world health issues with data analysis. I wanted to better understand whether habits like alcohol use or smoking are linked to obesity, and if so, how strong those connections are. This kind of information can be helpful not just for individuals who want to learn more about their own health, but also for doctors, public health professionals, or policy makers who want to support healthier communities. By using data and statistical models, this project aims to uncover patters that can make those links clearer and more understandable.
+I chose this topic because it connects real world health issues with data analysis. I wanted to better understand whether habits like alcohol use or smoking are linked to obesity, and if so, how strong those connections are. This kind of information can be helpful not just for individuals who want to learn more about their own health, but also for doctors, public health professionals, or policy makers who want to support healthier communities. By using data and statistical models, this project aims to uncover patterns that can make those links clearer and more understandable.
 
-In this dataset, obesity is divided into seven categories based on physical characteristics like weight and height. These categories are: Insufficient Weight, Normal Weight, Overweight Level I, Overweight Level II, Obesity Type I, Obesity Type II, and Obesity Type III. These categories are based on body measurements like weight and height, similar to how Body Mass Index (BMI) is used in medical setting. For example, "Normal Weight" represents a healthy range, while "Overweight Levels I and II" suggest increasing excess weight. "Obesity Types I, II, and III" indicate progressively higher degrees of obesity, with Type III being the most extreme. Understanding how lifestyle behaviors show up across these categories can help reveal what role habits like drinking and smoking might play in influencing a person's weight and overall health.
+In this dataset, obesity is divided into seven categories which are: Insufficient Weight, Normal Weight, Overweight Level I, Overweight Level II, Obesity Type I, Obesity Type II, and Obesity Type III. These categories are based on body measurements like weight and height, similar to how Body Mass Index (BMI) is used in medical setting. For example, "Normal Weight" represents a healthy range, while "Overweight Levels I and II" suggest increasing excess weight. "Obesity Types I, II, and III" indicate progressively higher degrees of obesity, with Type III being the most extreme. Understanding how lifestyle behaviors show up across these categories can help reveal what role habits like drinking and smoking might play in influencing a person's weight and overall health.
 
 ```{r}
 #| label: do this first
@@ -22,7 +22,7 @@ here::i_am("Obesity-Final-Project.qmd")
 
 The main goal of this project is to investigate how alcohol consumption and smoking relate to obesity levels. I wanted to see whether these habits are useful for predicting which obesity category a person falls into, and whether they still matter when other lifestyle variables are also considered. By analyzing these variables in full models, the project uncovers patterns that show how everyday decisions may relate to obesity risk.
 
-This analysis is meant to provide insight into whether drinking and smoking are just common lifestyle factors or if they actually contribute to higher obesity risk. The findings could be helpful for individuals trying to make healthier choices, as well as for professionals working in health education or policy. By identifying which habits are most strongly associated with obesity, the project hopes to support more informed decisions around personal help and public wellness.
+This analysis is meant to provide insight into whether drinking and smoking are just common lifestyle factors or if they actually contribute to higher obesity risk. The findings could be helpful for individuals trying to make healthier choices, as well as for professionals working in health education or policy.
 
 ## Packages Used In This Analysis
 
@@ -46,25 +46,25 @@ library(broom)
 library(glmnet)
 ```
 
-| Package                                      | Use                                                  |
+| Package                                             | Use                                                  |
 |------------------------------------|------------------------------------|
-| [here](https://github.com/jennybc/here_here) | to easily load and save data                         |
-| [readr](https://readr.tidyverse.org/)        | to import the CSV file data                          |
-| [dplyr](https://dplyr.tidyverse.org/)        | to massage and summarize data                        |
-| [rsample](https://rsample.tidymodels.org/)   | to split data into training and test sets            |
-| [naniar](https://rpubs.com/jlv7cr/750220)    | to check for missing values                          |
-| [ggplot2](https://ggplot2.tidyverse.org/)    | to create nice-looking and informative graphs        |
-| nnet                                         | to fit multinomial logistic regression               |
-| tibble                                       | to create and manipulate tidy data frames            |
-| yarstick                                     | to calculate model performance metrics like accuracy |
-| broom                                        | to tidy up model output for easier interpretation    |
-| glmnet                                       | to fit LASSO models using regularization             |
+| [here](https://github.com/jennybc/here_here)        | to easily load and save data                         |
+| [readr](https://readr.tidyverse.org/)               | to import the CSV file data                          |
+| [dplyr](https://dplyr.tidyverse.org/)               | to massage and summarize data                        |
+| [rsample](https://rsample.tidymodels.org/)          | to split data into training and test sets            |
+| [naniar](https://cran.r-project.org/package=naniar) | to check for missing values                          |
+| [ggplot2](https://ggplot2.tidyverse.org/)           | to create nice-looking and informative graphs        |
+| [nnet](https://cran.r-project.org/package=nnet)     | to fit multinomial logistic regression               |
+| [tibble](https://tibble.tidyverse.org)              | to create and manipulate tidy data frames            |
+| [yardstick](https://yardstick.tidymodels.org)       | to calculate model performance metrics like accuracy |
+| [broom](https://broom.tidymodels.org)               | to tidy up model output for easier interpretation    |
+| [glmnet](https://glmnet.stanford.edu)               | to fit LASSO models using regularization             |
 
 ## Data Description
 
 The data used in this project comes from the UCI Machine Learning Repository, and it is titled Estimation of Obesity Levels Based on Eating Habits and Physical Condition. This dataset can be accessed [here](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition). The dataset was created by researchers Fabio Palechor and Alexis de la Hoz Manotas and published around 2018. The data was collected using a web based survey where anonymous individuals from Mexico, Peru and Colombia reported information about their lifestyle habits and physical conditions. Participants were between the ages of 14 and 61 and answered questions related to eating behavior, exercise, water intake, alcohol consumption, smoking and more.
 
-The goal of the original study was to explore the relationship between these lifestyle factors and obesity. In total, the dataset includes 2,111 observations with 17 variables. The target variable, `NObeyesdad`, classifies individuals into one of the seven categories that range from nsufficient Weight to Obesity Type III. These categories are based on physical measurements like height and weight and are structured similarly to BMI-based classifications.
+The goal of the original study was to explore the relationship between these lifestyle factors and obesity. In total, the dataset includes 2,111 observations with 17 variables. The target variable, `NObeyesdad`, classifies individuals into one of the seven categories that range from Insufficient Weight to Obesity Type III. These categories are based on physical measurements like height and weight and are structured similarly to BMI based classifications.
 
 To improve class balance, the researches used SMOTE (Synthetic Minority Over-sampling Technique) in Weka to generate 77% of the data synthetically. The remaining 23% comes from real survey responses. SMOTE helps ensure that all obesity categories are well represented in the data, which can help models perform more reliably across all classes.
 
@@ -77,7 +77,7 @@ obesity <- read_csv("ObesityDataSet_raw_and_data_sinthetic.csv")
 
 ### Data Limitations
 
-## Data Wrangling (Optional Section)
+## Data Wrangling
 
 ```{r}
 #| label: splitting data 
@@ -399,7 +399,7 @@ lasso_fit |>
 
 The coefficient path plots show how the values of different predictors change as the penalty term increases. As the penalty increases (moving left to right), the model applies more shrinkage, and many coefficients are pulled closer to zero. This is how LASSO performs variable selection.
 
-In my case, most predictors stayed close to zero early on, meaning they weren\'t very strong. However, some predictors remained further from zero longer, suggesting they were more important in predicting that specific obesity category. By looking at these plots, I was able to confirm that LASSO kept only the most useful predictors while filtering out the rest.
+In my case, most predictors stayed close to zero early on, meaning they weren't very strong. However, some predictors remained further from zero longer, suggesting they were more important in predicting that specific obesity category. By looking at these plots, I was able to confirm that LASSO kept only the most useful predictors while filtering out the rest.
 
 After fitting the model, I extracted the coefficients and focused on `SMOKE` and `CALC` to see if they were selected by LASSO.
 
@@ -461,12 +461,12 @@ In both the multinomial and LASSO models, smoking and not drinking alcohol were 
 
 ### Limitations and Future Work
 
-Even though the models in this project did really well overall, there are still a few important limitations. One of the main things is that it\'s hard to tell how much smoking and alcohol really affect obesity on their own. Since the models included a bunch of other lifestyle factors, it\'s not easy to separate out their impact. SMOKE and CALC showed up as important in some categories, but not all, and LASSO even removed a few of them completely. That makes it seem like they might not be super strong predictors by themselves, or maybe their effect depends on other things like diet or physical activity.
+Even though the models in this project did really well overall, there are still a few important limitations. One of the main things is that it's hard to tell how much smoking and alcohol really affect obesity on their own. Since the models included a bunch of other lifestyle factors, it's not easy to separate out their impact. SMOKE and CALC showed up as important in some categories, but not all, and LASSO even removed a few of them completely. That makes it seem like they might not be super strong predictors by themselves, or maybe their effect depends on other things like diet or physical activity.
 
-Another thing I ran into is that the dataset doesn\'t explain what the different obesity categories actually mean even though at first I thought it did. It uses labels like \"Obesity_Type_I\" and \"Overweight_Level_II,\" but there\'s no clear definition of what those mean or how different they are. That made it harder to really understand how serious each group is or what separates one from another.
+Another thing I ran into is that the dataset doesn't explain what the different obesity categories actually mean even though at first I thought it did. It uses labels like "Obesity_Type_I" and "Overweight_Level_II," but there's no clear definition of what those mean or how different they are. That made it harder to really understand how serious each group is or what separates one from another.
 
-Also, the data is self-reported, which isn\'t always reliable. People might leave things out or answer in a way that sounds better, especially for questions about smoking, drinking, or eating habits. On top of that, a lot of the data was synthetically generated using SMOTE (Synthetic Minority Oversampling TEchnique) to balance out the categories. That helps with modeling, but it might not reflect real-world responses as well as actual survey data.
+Also, the data is self-reported, which isn't always reliable. People might leave things out or answer in a way that sounds better, especially for questions about smoking, drinking, or eating habits. On top of that, a lot of the data was synthetically generated using SMOTE (Synthetic Minority Oversampling TEchnique) to balance out the categories. That helps with modeling, but it might not reflect real-world responses as well as actual survey data.
 
-LASSO helped clean up the model by removing predictors that weren\'t as helpful, but it didn\'t shrink that many variables to zero. That could mean the variables really were useful, or that the penalty wasn\'t strong enough to force more selection. Trying other models in the future, like decision trees or random forests, could help show which variables are actually the most important for predicting obesity. But for this project, the main goal was just to see whether smoking and alcohol had any noticeable connection to obesity, and both models helped explore that.
+LASSO helped clean up the model by removing predictors that weren't as helpful, but it didn't shrink that many variables to zero. That could mean the variables really were useful, or that the penalty wasn't strong enough to force more selection. Trying other models in the future, like decision trees or random forests, could help show which variables are actually the most important for predicting obesity. But for this project, the main goal was just to see whether smoking and alcohol had any noticeable connection to obesity, and both models helped explore that.
 
-In the future, it would help to have a dataset with more detailed health and lifestyle information, and one that clearly defines the outcome labels especially obesity levels. And since this project is about people\'s health, it\'s important to use results like these to support and inform---not to label or judge anyone.
+In the future, it would help to have a dataset with more detailed health and lifestyle information, and one that clearly defines the outcome labels especially obesity levels. Since this project is about people's health, it's important to use results like these to support and inform one another, and not judge anyone based on which category they fit into

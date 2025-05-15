@@ -100,7 +100,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <meta property="og:site-name" content="Home">
 </head>
 
-<body class="nav-fixed fullcontent">
+<body class="floating nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Home</span>
+    <span class="navbar-title">Kaelyn Marquez</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -118,12 +118,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="./Obesity-Final-Project.html" rel="" target="" aria-current="page">
- <span class="menu-text">Understanding the Impact of Alcohol and Smoking on Obesity Levels</span></a>
+ <span class="menu-text">Final Project</span></a>
   </li>  
 </ul>
             <div class="quarto-navbar-tools ms-auto">
@@ -135,8 +131,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#motivation-and-context" id="toc-motivation-and-context" class="nav-link active" data-scroll-target="#motivation-and-context">Motivation and Context</a></li>
+  <li><a href="#main-objective" id="toc-main-objective" class="nav-link" data-scroll-target="#main-objective">Main Objective</a></li>
+  <li><a href="#packages-used-in-this-analysis" id="toc-packages-used-in-this-analysis" class="nav-link" data-scroll-target="#packages-used-in-this-analysis">Packages Used In This Analysis</a></li>
+  <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data Description</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+  <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a></li>
+  <li><a href="#insights" id="toc-insights" class="nav-link" data-scroll-target="#insights">Insights</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -160,13 +174,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="motivation-and-context" class="level2">
 <h2 class="anchored" data-anchor-id="motivation-and-context">Motivation and Context</h2>
 <p>This project explores how lifestyle habits like drinking alcohol and smoking may be related to different levels of obesity. Obesity is a major health concern that can lead to serious conditions such as heart disease, diabetes, and certain types of cancer. While many factors can affect a person’s weight, behaviors like drinking and smoking are common and often overlooked when it comes to their possible impact on health.</p>
-<p>I chose this topic because it connects real world health issues with data analysis. I wanted to better understand whether habits like alcohol use or smoking are linked to obesity, and if so, how strong those connections are. This kind of information can be helpful not just for individuals who want to learn more about their own health, but also for doctors, public health professionals, or policy makers who want to support healthier communities. By using data and statistical models, this project aims to uncover patters that can make those links clearer and more understandable.</p>
-<p>In this dataset, obesity is divided into seven categories based on physical characteristics like weight and height. These categories are: Insufficient Weight, Normal Weight, Overweight Level I, Overweight Level II, Obesity Type I, Obesity Type II, and Obesity Type III. These categories are based on body measurements like weight and height, similar to how Body Mass Index (BMI) is used in medical setting. For example, “Normal Weight” represents a healthy range, while “Overweight Levels I and II” suggest increasing excess weight. “Obesity Types I, II, and III” indicate progressively higher degrees of obesity, with Type III being the most extreme. Understanding how lifestyle behaviors show up across these categories can help reveal what role habits like drinking and smoking might play in influencing a person’s weight and overall health.</p>
+<p>I chose this topic because it connects real world health issues with data analysis. I wanted to better understand whether habits like alcohol use or smoking are linked to obesity, and if so, how strong those connections are. This kind of information can be helpful not just for individuals who want to learn more about their own health, but also for doctors, public health professionals, or policy makers who want to support healthier communities. By using data and statistical models, this project aims to uncover patterns that can make those links clearer and more understandable.</p>
+<p>In this dataset, obesity is divided into seven categories which are: Insufficient Weight, Normal Weight, Overweight Level I, Overweight Level II, Obesity Type I, Obesity Type II, and Obesity Type III. These categories are based on body measurements like weight and height, similar to how Body Mass Index (BMI) is used in medical setting. For example, “Normal Weight” represents a healthy range, while “Overweight Levels I and II” suggest increasing excess weight. “Obesity Types I, II, and III” indicate progressively higher degrees of obesity, with Type III being the most extreme. Understanding how lifestyle behaviors show up across these categories can help reveal what role habits like drinking and smoking might play in influencing a person’s weight and overall health.</p>
 </section>
 <section id="main-objective" class="level2">
 <h2 class="anchored" data-anchor-id="main-objective">Main Objective</h2>
 <p>The main goal of this project is to investigate how alcohol consumption and smoking relate to obesity levels. I wanted to see whether these habits are useful for predicting which obesity category a person falls into, and whether they still matter when other lifestyle variables are also considered. By analyzing these variables in full models, the project uncovers patterns that show how everyday decisions may relate to obesity risk.</p>
-<p>This analysis is meant to provide insight into whether drinking and smoking are just common lifestyle factors or if they actually contribute to higher obesity risk. The findings could be helpful for individuals trying to make healthier choices, as well as for professionals working in health education or policy. By identifying which habits are most strongly associated with obesity, the project hopes to support more informed decisions around personal help and public wellness.</p>
+<p>This analysis is meant to provide insight into whether drinking and smoking are just common lifestyle factors or if they actually contribute to higher obesity risk. The findings could be helpful for individuals trying to make healthier choices, as well as for professionals working in health education or policy.</p>
 </section>
 <section id="packages-used-in-this-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="packages-used-in-this-analysis">Packages Used In This Analysis</h2>
@@ -210,7 +224,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>to split data into training and test sets</td>
 </tr>
 <tr class="odd">
-<td><a href="https://rpubs.com/jlv7cr/750220">naniar</a></td>
+<td><a href="https://cran.r-project.org/package=naniar">naniar</a></td>
 <td>to check for missing values</td>
 </tr>
 <tr class="even">
@@ -218,23 +232,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>to create nice-looking and informative graphs</td>
 </tr>
 <tr class="odd">
-<td>nnet</td>
+<td><a href="https://cran.r-project.org/package=nnet">nnet</a></td>
 <td>to fit multinomial logistic regression</td>
 </tr>
 <tr class="even">
-<td>tibble</td>
+<td><a href="https://tibble.tidyverse.org">tibble</a></td>
 <td>to create and manipulate tidy data frames</td>
 </tr>
 <tr class="odd">
-<td>yarstick</td>
+<td><a href="https://yardstick.tidymodels.org">yardstick</a></td>
 <td>to calculate model performance metrics like accuracy</td>
 </tr>
 <tr class="even">
-<td>broom</td>
+<td><a href="https://broom.tidymodels.org">broom</a></td>
 <td>to tidy up model output for easier interpretation</td>
 </tr>
 <tr class="odd">
-<td>glmnet</td>
+<td><a href="https://glmnet.stanford.edu">glmnet</a></td>
 <td>to fit LASSO models using regularization</td>
 </tr>
 </tbody>
@@ -243,7 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="data-description" class="level2">
 <h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
 <p>The data used in this project comes from the UCI Machine Learning Repository, and it is titled Estimation of Obesity Levels Based on Eating Habits and Physical Condition. This dataset can be accessed <a href="https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition">here</a>. The dataset was created by researchers Fabio Palechor and Alexis de la Hoz Manotas and published around 2018. The data was collected using a web based survey where anonymous individuals from Mexico, Peru and Colombia reported information about their lifestyle habits and physical conditions. Participants were between the ages of 14 and 61 and answered questions related to eating behavior, exercise, water intake, alcohol consumption, smoking and more.</p>
-<p>The goal of the original study was to explore the relationship between these lifestyle factors and obesity. In total, the dataset includes 2,111 observations with 17 variables. The target variable, <code>NObeyesdad</code>, classifies individuals into one of the seven categories that range from nsufficient Weight to Obesity Type III. These categories are based on physical measurements like height and weight and are structured similarly to BMI-based classifications.</p>
+<p>The goal of the original study was to explore the relationship between these lifestyle factors and obesity. In total, the dataset includes 2,111 observations with 17 variables. The target variable, <code>NObeyesdad</code>, classifies individuals into one of the seven categories that range from Insufficient Weight to Obesity Type III. These categories are based on physical measurements like height and weight and are structured similarly to BMI based classifications.</p>
 <p>To improve class balance, the researches used SMOTE (Synthetic Minority Over-sampling Technique) in Weka to generate 77% of the data synthetically. The remaining 23% comes from real survey responses. SMOTE helps ensure that all obesity categories are well represented in the data, which can help models perform more reliably across all classes.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
@@ -253,8 +267,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="data-limitations">Data Limitations</h3>
 </section>
 </section>
-<section id="data-wrangling-optional-section" class="level2">
-<h2 class="anchored" data-anchor-id="data-wrangling-optional-section">Data Wrangling (Optional Section)</h2>
+<section id="data-wrangling" class="level2">
+<h2 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># converting character variables to factors</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>obesity <span class="ot">&lt;-</span> obesity <span class="sc">|&gt;</span></span>
@@ -705,7 +719,7 @@ Prediction            Overweight_Level_II
 </div>
 </div>
 <p>The coefficient path plots show how the values of different predictors change as the penalty term increases. As the penalty increases (moving left to right), the model applies more shrinkage, and many coefficients are pulled closer to zero. This is how LASSO performs variable selection.</p>
-<p>In my case, most predictors stayed close to zero early on, meaning they weren't very strong. However, some predictors remained further from zero longer, suggesting they were more important in predicting that specific obesity category. By looking at these plots, I was able to confirm that LASSO kept only the most useful predictors while filtering out the rest.</p>
+<p>In my case, most predictors stayed close to zero early on, meaning they weren’t very strong. However, some predictors remained further from zero longer, suggesting they were more important in predicting that specific obesity category. By looking at these plots, I was able to confirm that LASSO kept only the most useful predictors while filtering out the rest.</p>
 <p>After fitting the model, I extracted the coefficients and focused on <code>SMOKE</code> and <code>CALC</code> to see if they were selected by LASSO.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>lasso_coef <span class="ot">&lt;-</span> lasso_fit <span class="sc">|&gt;</span></span>
@@ -831,11 +845,11 @@ Prediction            Overweight_Level_II
 <p>In both the multinomial and LASSO models, smoking and not drinking alcohol were selected as predictors in a few obesity categories. However, LASSO removed many of the related terms, and other variables like diet, physical activity, and family history were kept more consistently. So while smoking and alcohol show some connection to obesity, the models suggest they’re not the strongest predictors on their own. This highlights that these habits might play a role, but they work alongside many other factors when it comes to predicting obesity.</p>
 <section id="limitations-and-future-work" class="level3">
 <h3 class="anchored" data-anchor-id="limitations-and-future-work">Limitations and Future Work</h3>
-<p>Even though the models in this project did really well overall, there are still a few important limitations. One of the main things is that it's hard to tell how much smoking and alcohol really affect obesity on their own. Since the models included a bunch of other lifestyle factors, it's not easy to separate out their impact. SMOKE and CALC showed up as important in some categories, but not all, and LASSO even removed a few of them completely. That makes it seem like they might not be super strong predictors by themselves, or maybe their effect depends on other things like diet or physical activity.</p>
-<p>Another thing I ran into is that the dataset doesn't explain what the different obesity categories actually mean even though at first I thought it did. It uses labels like "Obesity_Type_I" and "Overweight_Level_II," but there's no clear definition of what those mean or how different they are. That made it harder to really understand how serious each group is or what separates one from another.</p>
-<p>Also, the data is self-reported, which isn't always reliable. People might leave things out or answer in a way that sounds better, especially for questions about smoking, drinking, or eating habits. On top of that, a lot of the data was synthetically generated using SMOTE (Synthetic Minority Oversampling TEchnique) to balance out the categories. That helps with modeling, but it might not reflect real-world responses as well as actual survey data.</p>
-<p>LASSO helped clean up the model by removing predictors that weren't as helpful, but it didn't shrink that many variables to zero. That could mean the variables really were useful, or that the penalty wasn't strong enough to force more selection. Trying other models in the future, like decision trees or random forests, could help show which variables are actually the most important for predicting obesity. But for this project, the main goal was just to see whether smoking and alcohol had any noticeable connection to obesity, and both models helped explore that.</p>
-<p>In the future, it would help to have a dataset with more detailed health and lifestyle information, and one that clearly defines the outcome labels especially obesity levels. And since this project is about people's health, it's important to use results like these to support and inform—not to label or judge anyone.</p>
+<p>Even though the models in this project did really well overall, there are still a few important limitations. One of the main things is that it’s hard to tell how much smoking and alcohol really affect obesity on their own. Since the models included a bunch of other lifestyle factors, it’s not easy to separate out their impact. SMOKE and CALC showed up as important in some categories, but not all, and LASSO even removed a few of them completely. That makes it seem like they might not be super strong predictors by themselves, or maybe their effect depends on other things like diet or physical activity.</p>
+<p>Another thing I ran into is that the dataset doesn’t explain what the different obesity categories actually mean even though at first I thought it did. It uses labels like “Obesity_Type_I” and “Overweight_Level_II,” but there’s no clear definition of what those mean or how different they are. That made it harder to really understand how serious each group is or what separates one from another.</p>
+<p>Also, the data is self-reported, which isn’t always reliable. People might leave things out or answer in a way that sounds better, especially for questions about smoking, drinking, or eating habits. On top of that, a lot of the data was synthetically generated using SMOTE (Synthetic Minority Oversampling TEchnique) to balance out the categories. That helps with modeling, but it might not reflect real-world responses as well as actual survey data.</p>
+<p>LASSO helped clean up the model by removing predictors that weren’t as helpful, but it didn’t shrink that many variables to zero. That could mean the variables really were useful, or that the penalty wasn’t strong enough to force more selection. Trying other models in the future, like decision trees or random forests, could help show which variables are actually the most important for predicting obesity. But for this project, the main goal was just to see whether smoking and alcohol had any noticeable connection to obesity, and both models helped explore that.</p>
+<p>In the future, it would help to have a dataset with more detailed health and lifestyle information, and one that clearly defines the outcome labels especially obesity levels. Since this project is about people’s health, it’s important to use results like these to support and inform one another, and not judge anyone based on which category they fit into</p>
 
 
 </section>
