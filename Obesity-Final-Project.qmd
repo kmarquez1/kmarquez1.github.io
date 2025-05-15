@@ -53,7 +53,7 @@ library(glmnet)
 | [dplyr](https://dplyr.tidyverse.org/)               | to massage and summarize data                        |
 | [rsample](https://rsample.tidymodels.org/)          | to split data into training and test sets            |
 | [naniar](https://cran.r-project.org/package=naniar) | to check for missing values                          |
-| [ggplot2](https://ggplot2.tidyverse.org/)           | to create nice-looking and informative graphs        |
+| [ggplot2](https://ggplot2.tidyverse.org/)           | to create nice looking and informative graphs        |
 | [nnet](https://cran.r-project.org/package=nnet)     | to fit multinomial logistic regression               |
 | [tibble](https://tibble.tidyverse.org)              | to create and manipulate tidy data frames            |
 | [yardstick](https://yardstick.tidymodels.org)       | to calculate model performance metrics like accuracy |
@@ -300,7 +300,7 @@ obesity_test$NObeyesdad <- as.factor(obesity_test$NObeyesdad)
 #| message: false
 #| warning: false
 # all predictors to model the 7-category outcome
-multinom_model <- multinom(NObeyesdad ~ ., data = obesity_train)
+multinom_model <- multinom(NObeyesdad ~ . - Height - Weight, data = obesity_train)
 tidy(multinom_model)
 ```
 
@@ -351,6 +351,7 @@ lasso_model <- multinom_reg(mode = "classification", engine = "glmnet",
                           mixture = 1) # 1 is LASSO
 
 lasso_recipe <- recipe(NObeyesdad ~ ., data = obesity_train) |>
+  step_rm(Height, Weight) |>
   step_dummy(all_nominal_predictors()) |> # since they are categorical 
   step_normalize(all_numeric_predictors()) # same scale 
 
@@ -430,34 +431,6 @@ conf_mat(lasso_preds, truth = NObeyesdad, estimate = .pred_class)
 The LASSO model had an accuracy of about 96.2%, meaning it correctly predicted the obesity category for most of the people in the test set. This is a strong result, especially since there are seven different categories. It shows that even with regularization and some coefficients being removed, the model still did a really good job at classifying individuals based on their lifestyle habits.
 
 ## Insights
-
-```{r}
-ggplot(obesity_train,
-       aes(x = NObeyesdad, fill = CALC)) +
-  geom_bar(position = "dodge") +
-  labs(
-    title = "Alcohol Consumption by Obesity Category",
-    x = "Obesity Category",
-    y = "Count",
-    fill = "Alcohol Consumption"
-  ) + theme(axis.text.x = element_text(angle = 45, hjust = 1 ))
-```
-
-```{r}
-ggplot(obesity_train,
-       aes(x = NObeyesdad, fill = SMOKE)) +
-  geom_bar(position = "dodge") +
-  labs(
-    title = "Proportion of Smokers by Obesity Category",
-    x = "Obesity Category",
-    y = "Count",
-    fill = "Smoke"
-  ) + theme(axis.text.x = element_text(angle = 45, hjust = 1 ))
-```
-
-These plots show the relationship between alcohol use, smoking and obesity categories. In the first graph people who drink alcohol "sometimes" make up a large portion of the higher obesity categories, especially Obesity Type III and Overweight Level I. In the second graph, smokers make up a small portion of the dataset overall, but they appear slightly more in some obesity categories like Obesity Type I and II.
-
-In both the multinomial and LASSO models, smoking and not drinking alcohol were selected as predictors in a few obesity categories. However, LASSO removed many of the related terms, and other variables like diet, physical activity, and family history were kept more consistently. So while smoking and alcohol show some connection to obesity, the models suggest they're not the strongest predictors on their own. This highlights that these habits might play a role, but they work alongside many other factors when it comes to predicting obesity.
 
 ### Limitations and Future Work
 

@@ -229,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 <tr class="even">
 <td><a href="https://ggplot2.tidyverse.org/">ggplot2</a></td>
-<td>to create nice-looking and informative graphs</td>
+<td>to create nice looking and informative graphs</td>
 </tr>
 <tr class="odd">
 <td><a href="https://cran.r-project.org/package=nnet">nnet</a></td>
@@ -533,39 +533,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all predictors to model the 7-category outcome</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>multinom_model <span class="ot">&lt;-</span> <span class="fu">multinom</span>(NObeyesdad <span class="sc">~</span> ., <span class="at">data =</span> obesity_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>multinom_model <span class="ot">&lt;-</span> <span class="fu">multinom</span>(NObeyesdad <span class="sc">~</span> . <span class="sc">-</span> Height <span class="sc">-</span> Weight, <span class="at">data =</span> obesity_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># weights:  175 (144 variable)
+<pre><code># weights:  161 (132 variable)
 initial  value 3284.696332 
-iter  10 value 2716.011191
-iter  20 value 1825.936578
-iter  30 value 1330.345266
-iter  40 value 1081.252069
-iter  50 value 829.403816
-iter  60 value 552.348180
-iter  70 value 320.976456
-iter  80 value 206.982321
-iter  90 value 151.222110
-iter 100 value 108.048475
-final  value 108.048475 
+iter  10 value 2521.452313
+iter  20 value 2055.838062
+iter  30 value 1842.942856
+iter  40 value 1771.136782
+iter  50 value 1726.623624
+iter  60 value 1708.439310
+iter  70 value 1696.562854
+iter  80 value 1684.548609
+iter  90 value 1681.821920
+iter 100 value 1672.112474
+final  value 1672.112474 
 stopped after 100 iterations</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(multinom_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 144 × 6
+<pre><code># A tibble: 132 × 6
    y.level       term               estimate std.error statistic  p.value
    &lt;chr&gt;         &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 Normal_Weight (Intercept)          97.1       4.79     20.3   2.31e-91
- 2 Normal_Weight GenderMale           -1.12      1.40     -0.799 4.24e- 1
- 3 Normal_Weight Age                   0.517     0.116     4.47  7.98e- 6
- 4 Normal_Weight Height             -129.        2.75    -46.9   0       
- 5 Normal_Weight Weight                3.14      0.173    18.1   4.22e-73
- 6 Normal_Weight hist_overweightyes   -2.22      1.40     -1.58  1.14e- 1
- 7 Normal_Weight FAVCyes              -3.79      1.59     -2.38  1.71e- 2
- 8 Normal_Weight FCVC                 -1.39      0.926    -1.50  1.34e- 1
- 9 Normal_Weight NCP                  -2.28      0.926    -2.46  1.37e- 2
-10 Normal_Weight CAECFrequently       -5.51      3.55     -1.55  1.21e- 1
-# ℹ 134 more rows</code></pre>
+ 1 Normal_Weight (Intercept)           9.70     1.16        8.39 4.92e-17
+ 2 Normal_Weight GenderMale            0.792    0.258       3.07 2.14e- 3
+ 3 Normal_Weight Age                   0.210    0.0384      5.46 4.78e- 8
+ 4 Normal_Weight hist_overweightyes    0.549    0.249       2.21 2.73e- 2
+ 5 Normal_Weight FAVCyes              -0.470    0.292      -1.61 1.07e- 1
+ 6 Normal_Weight FCVC                 -0.648    0.210      -3.09 2.02e- 3
+ 7 Normal_Weight NCP                  -0.505    0.149      -3.38 7.25e- 4
+ 8 Normal_Weight CAECFrequently       -3.03     0.826      -3.67 2.39e- 4
+ 9 Normal_Weight CAECno               -1.78     1.17       -1.52 1.29e- 1
+10 Normal_Weight CAECSometimes        -2.16     0.807      -2.67 7.50e- 3
+# ℹ 122 more rows</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -583,31 +583,31 @@ stopped after 100 iterations</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Truth
 Prediction            Insufficient_Weight Normal_Weight Obesity_Type_I
-  Insufficient_Weight                  47             1              0
-  Normal_Weight                         2            59              0
-  Obesity_Type_I                        0             0             87
-  Obesity_Type_II                       0             0              1
-  Obesity_Type_III                      0             0              0
-  Overweight_Level_I                    0             4              0
-  Overweight_Level_II                   0             0              4
+  Insufficient_Weight                  38            18              1
+  Normal_Weight                         5            26              4
+  Obesity_Type_I                        1             4             51
+  Obesity_Type_II                       2             2             15
+  Obesity_Type_III                      0             0              1
+  Overweight_Level_I                    1            10             11
+  Overweight_Level_II                   2             4              9
                      Truth
 Prediction            Obesity_Type_II Obesity_Type_III Overweight_Level_I
-  Insufficient_Weight               0                0                  0
-  Normal_Weight                     0                0                  2
-  Obesity_Type_I                    0                0                  0
-  Obesity_Type_II                  53                0                  0
+  Insufficient_Weight               0                0                  2
+  Normal_Weight                     0                0                 11
+  Obesity_Type_I                    1                0                  7
+  Obesity_Type_II                  50                0                  7
   Obesity_Type_III                  0               62                  0
-  Overweight_Level_I                0                0                 47
-  Overweight_Level_II               0                0                  8
+  Overweight_Level_I                0                0                 25
+  Overweight_Level_II               2                0                  5
                      Truth
 Prediction            Overweight_Level_II
-  Insufficient_Weight                   0
-  Normal_Weight                         0
-  Obesity_Type_I                        2
-  Obesity_Type_II                       0
-  Obesity_Type_III                      1
-  Overweight_Level_I                    4
-  Overweight_Level_II                  39</code></pre>
+  Insufficient_Weight                   1
+  Normal_Weight                         2
+  Obesity_Type_I                       12
+  Obesity_Type_II                      14
+  Obesity_Type_III                      0
+  Overweight_Level_I                    2
+  Overweight_Level_II                  15</code></pre>
 </div>
 </div>
 <p>Based on the confusion matrix, the model did a really good job predicting most of the obesity categories correctly. It was especially accurate for Obesity Type I, II, and III, where the predictions were almost perfect. There were a few mistakes, mainly between categories that are close to each other, like Normal Weight being confused with Overweight Level I or Overweight Level II being confused with Obesity Type I. That kind of mix-up makes sense since those groups might have similar habits or measurements. Overall, the model is performing very well across all obesity categories.</p>
@@ -617,7 +617,7 @@ Prediction            Overweight_Level_II
 <pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-1 accuracy multiclass     0.931</code></pre>
+1 accuracy multiclass     0.631</code></pre>
 </div>
 </div>
 <p>I used accuracy and a confusion matrix to evaluate how well the model performed. Accuracy is a common and simple metric that tells me what proportion of the predictions were correct overall. It’s calculated by dividing the number of correct predictions by the total number of predictions. I also included a confusion matrix because accuracy alone doesn’t always show how the model did for each specific class. The confusion matrix helps me see which categories were predicted correctly and which ones the model mixed up, so I can tell if it’s doing well across all obesity levels.</p>
@@ -630,18 +630,18 @@ Prediction            Overweight_Level_II
 <pre><code># A tibble: 12 × 6
    y.level             term     estimate std.error statistic   p.value
    &lt;chr&gt;               &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
- 1 Normal_Weight       SMOKEyes     55.5      3.12     17.8  1.16e- 70
- 2 Normal_Weight       CALCno      -32.8      1.62    -20.2  3.80e- 91
- 3 Obesity_Type_I      SMOKEyes     52.9      2.60     20.4  3.43e- 92
- 4 Obesity_Type_I      CALCno       77.0      2.58     29.8  5.44e-195
- 5 Obesity_Type_II     SMOKEyes     43.9      2.39     18.4  1.68e- 75
- 6 Obesity_Type_II     CALCno       70.3      2.83     24.8  3.02e-136
- 7 Obesity_Type_III    SMOKEyes     21.9      4.96      4.42 9.78e-  6
- 8 Obesity_Type_III    CALCno      -71.8      2.04    -35.1  3.63e-270
- 9 Overweight_Level_I  SMOKEyes     49.8      2.03     24.5  9.87e-133
-10 Overweight_Level_I  CALCno       51.2      2.14     23.9  2.68e-126
-11 Overweight_Level_II SMOKEyes     55.4      1.93     28.7  1.43e-181
-12 Overweight_Level_II CALCno       99.3      2.02     49.1  0        </code></pre>
+ 1 Normal_Weight       SMOKEyes    14.8      0.651     22.8  3.85e-115
+ 2 Normal_Weight       CALCno      -8.86     0.508    -17.4  4.29e- 68
+ 3 Obesity_Type_I      SMOKEyes    13.4      0.752     17.9  1.74e- 71
+ 4 Obesity_Type_I      CALCno      -1.37     0.578     -2.36 1.81e-  2
+ 5 Obesity_Type_II     SMOKEyes    14.5      0.760     19.0  7.90e- 81
+ 6 Obesity_Type_II     CALCno      -5.70     0.776     -7.34 2.14e- 13
+ 7 Obesity_Type_III    SMOKEyes    11.6      1.62       7.17 7.28e- 13
+ 8 Obesity_Type_III    CALCno     -28.3      3.38      -8.37 5.56e- 17
+ 9 Overweight_Level_I  SMOKEyes    11.9      1.04      11.4  2.38e- 30
+10 Overweight_Level_I  CALCno      -1.28     0.578     -2.21 2.73e-  2
+11 Overweight_Level_II SMOKEyes    13.7      0.641     21.3  7.66e-101
+12 Overweight_Level_II CALCno       1.57     0.606      2.59 9.57e-  3</code></pre>
 </div>
 </div>
 <p>The model shows that both smoking and alcohol habits are related to obesity. The coefficients for <code>SMOKEyes</code> were large and positive across all categories, meaning smokers had much higher odds of being classified as overweight or obese compared to the baseline group. For alcohol, the results were more surprising. People who said they don’t drink (<code>CALCno</code>) also had higher odds of being classified in an obesity category. This might be due to how alcohol use is reported or other lifestyle factors in the data. Overall, both variables were statistically significant and stood out as important predictors in the model.</p>
@@ -655,12 +655,13 @@ Prediction            Overweight_Level_II
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">mixture =</span> <span class="dv">1</span>) <span class="co"># 1 is LASSO</span></span>
 <span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>lasso_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(NObeyesdad <span class="sc">~</span> ., <span class="at">data =</span> obesity_train) <span class="sc">|&gt;</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span> <span class="co"># since they are categorical </span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="co"># same scale </span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>lasso_wflow <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lasso_model) <span class="sc">|&gt;</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(lasso_recipe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(Height, Weight) <span class="sc">|&gt;</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span> <span class="co"># since they are categorical </span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="co"># same scale </span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>lasso_wflow <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lasso_model) <span class="sc">|&gt;</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(lasso_recipe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>I used 5 fold cross validation to tune the penalty parameter. I tested 25 (arbitrarily) different values and selected the final model using the one-standard-error rule, which prefers a simpler model that still performs well.</p>
 <div class="cell">
@@ -726,20 +727,20 @@ Prediction            Overweight_Level_II
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>()</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>lasso_coef </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 168 × 4
-   class               term         estimate  penalty
-   &lt;chr&gt;               &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;
- 1 Insufficient_Weight (Intercept)  -68.3    2.08e-10
- 2 Insufficient_Weight Age           -0.0313 2.08e-10
- 3 Insufficient_Weight Height        30.9    2.08e-10
- 4 Insufficient_Weight Weight      -121.     2.08e-10
- 5 Insufficient_Weight FCVC           0.840  2.08e-10
- 6 Insufficient_Weight NCP            0.379  2.08e-10
- 7 Insufficient_Weight CH2O           0.335  2.08e-10
- 8 Insufficient_Weight FAF            1.36   2.08e-10
- 9 Insufficient_Weight TUE            0      2.08e-10
-10 Insufficient_Weight Gender_Male    0.762  2.08e-10
-# ℹ 158 more rows</code></pre>
+<pre><code># A tibble: 154 × 4
+   class               term                estimate  penalty
+   &lt;chr&gt;               &lt;chr&gt;                  &lt;dbl&gt;    &lt;dbl&gt;
+ 1 Insufficient_Weight (Intercept)            2.32  2.08e-10
+ 2 Insufficient_Weight Age                   -1.99  2.08e-10
+ 3 Insufficient_Weight FCVC                   0.336 2.08e-10
+ 4 Insufficient_Weight NCP                    0.398 2.08e-10
+ 5 Insufficient_Weight CH2O                   0     2.08e-10
+ 6 Insufficient_Weight FAF                    0.183 2.08e-10
+ 7 Insufficient_Weight TUE                    0.485 2.08e-10
+ 8 Insufficient_Weight Gender_Male           -0.396 2.08e-10
+ 9 Insufficient_Weight hist_overweight_yes   -1.20  2.08e-10
+10 Insufficient_Weight FAVC_yes              -0.210 2.08e-10
+# ℹ 144 more rows</code></pre>
 </div>
 </div>
 <p>LASSO didn’t shrink that many coefficients to zero, which suggests that a lot of the variables in the dataset are actually useful for predicting obesity categories. This makes sense since the model is trying to classify people into seven different groups, so it needs a range of information to do that well. Even with regularization, LASSO still kept variables like smoking and alcohol, which shows they’re important predictors. The fact that many variables were kept means the model may be capturing more complex relationships between lifestyle habits and obesity levels.</p>
@@ -748,22 +749,22 @@ Prediction            Overweight_Level_II
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SMOKE_yes"</span>, <span class="st">"CALC_no"</span>, <span class="st">"CALC_always"</span>, <span class="st">"CALC_sometimes"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 14 × 4
-   class               term      estimate  penalty
-   &lt;chr&gt;               &lt;chr&gt;        &lt;dbl&gt;    &lt;dbl&gt;
- 1 Insufficient_Weight SMOKE_yes  -0.190  2.08e-10
- 2 Insufficient_Weight CALC_no    -0.164  2.08e-10
- 3 Normal_Weight       SMOKE_yes   0.148  2.08e-10
- 4 Normal_Weight       CALC_no     0      2.08e-10
- 5 Obesity_Type_I      SMOKE_yes   0.0353 2.08e-10
- 6 Obesity_Type_I      CALC_no     0      2.08e-10
- 7 Obesity_Type_II     SMOKE_yes   0      2.08e-10
- 8 Obesity_Type_II     CALC_no     1.16   2.08e-10
- 9 Obesity_Type_III    SMOKE_yes   0      2.08e-10
-10 Obesity_Type_III    CALC_no     0      2.08e-10
-11 Overweight_Level_I  SMOKE_yes  -0.298  2.08e-10
-12 Overweight_Level_I  CALC_no     0      2.08e-10
-13 Overweight_Level_II SMOKE_yes   0      2.08e-10
-14 Overweight_Level_II CALC_no     0      2.08e-10</code></pre>
+   class               term        estimate  penalty
+   &lt;chr&gt;               &lt;chr&gt;          &lt;dbl&gt;    &lt;dbl&gt;
+ 1 Insufficient_Weight SMOKE_yes -0.904     2.08e-10
+ 2 Insufficient_Weight CALC_no    0.000951  2.08e-10
+ 3 Normal_Weight       SMOKE_yes  0.173     2.08e-10
+ 4 Normal_Weight       CALC_no   -0.286     2.08e-10
+ 5 Obesity_Type_I      SMOKE_yes  0         2.08e-10
+ 6 Obesity_Type_I      CALC_no    0.177     2.08e-10
+ 7 Obesity_Type_II     SMOKE_yes  0.119     2.08e-10
+ 8 Obesity_Type_II     CALC_no    0         2.08e-10
+ 9 Obesity_Type_III    SMOKE_yes -0.217     2.08e-10
+10 Obesity_Type_III    CALC_no   -0.0000198 2.08e-10
+11 Overweight_Level_I  SMOKE_yes -0.204     2.08e-10
+12 Overweight_Level_I  CALC_no   -0.444     2.08e-10
+13 Overweight_Level_II SMOKE_yes  0.0374    2.08e-10
+14 Overweight_Level_II CALC_no    0.0363    2.08e-10</code></pre>
 </div>
 </div>
 <p>After using LASSO, only the CALC_no variable was kept in the model. The other alcohol-related categories like CALC_always and CALC_sometimes were removed, meaning they didn’t provide enough useful information for predicting obesity categories. This shows that not drinking alcohol had more predictive value than drinking occasionally or always, at least in this dataset.</p>
@@ -776,73 +777,43 @@ Prediction            Overweight_Level_II
 <pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
-1 accuracy multiclass     0.962</code></pre>
+1 accuracy multiclass     0.634</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(lasso_preds, <span class="at">truth =</span> NObeyesdad, <span class="at">estimate =</span> .pred_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Truth
 Prediction            Insufficient_Weight Normal_Weight Obesity_Type_I
-  Insufficient_Weight                  48             2              0
-  Normal_Weight                         1            59              0
-  Obesity_Type_I                        0             0             90
-  Obesity_Type_II                       0             0              2
-  Obesity_Type_III                      0             0              0
-  Overweight_Level_I                    0             3              0
-  Overweight_Level_II                   0             0              0
+  Insufficient_Weight                  38            18              1
+  Normal_Weight                         5            26              3
+  Obesity_Type_I                        1             4             51
+  Obesity_Type_II                       2             2             15
+  Obesity_Type_III                      0             1              0
+  Overweight_Level_I                    1            10             12
+  Overweight_Level_II                   2             3             10
                      Truth
 Prediction            Obesity_Type_II Obesity_Type_III Overweight_Level_I
-  Insufficient_Weight               0                0                  0
-  Normal_Weight                     0                0                  1
-  Obesity_Type_I                    0                0                  0
-  Obesity_Type_II                  53                0                  0
+  Insufficient_Weight               0                0                  1
+  Normal_Weight                     0                0                 10
+  Obesity_Type_I                    1                0                  7
+  Obesity_Type_II                  50                0                  7
   Obesity_Type_III                  0               62                  0
-  Overweight_Level_I                0                0                 51
-  Overweight_Level_II               0                0                  5
+  Overweight_Level_I                0                0                 26
+  Overweight_Level_II               2                0                  6
                      Truth
 Prediction            Overweight_Level_II
-  Insufficient_Weight                   0
-  Normal_Weight                         0
-  Obesity_Type_I                        0
-  Obesity_Type_II                       0
+  Insufficient_Weight                   1
+  Normal_Weight                         2
+  Obesity_Type_I                       12
+  Obesity_Type_II                      14
   Obesity_Type_III                      0
   Overweight_Level_I                    2
-  Overweight_Level_II                  44</code></pre>
+  Overweight_Level_II                  15</code></pre>
 </div>
 </div>
 <p>The LASSO model had an accuracy of about 96.2%, meaning it correctly predicted the obesity category for most of the people in the test set. This is a strong result, especially since there are seven different categories. It shows that even with regularization and some coefficients being removed, the model still did a really good job at classifying individuals based on their lifestyle habits.</p>
 </section>
 <section id="insights" class="level2">
 <h2 class="anchored" data-anchor-id="insights">Insights</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train,</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, <span class="at">fill =</span> CALC)) <span class="sc">+</span></span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Alcohol Consumption by Obesity Category"</span>,</span>
-<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Category"</span>,</span>
-<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Alcohol Consumption"</span></span>
-<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train,</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, <span class="at">fill =</span> SMOKE)) <span class="sc">+</span></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Proportion of Smokers by Obesity Category"</span>,</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Category"</span>,</span>
-<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Smoke"</span></span>
-<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>These plots show the relationship between alcohol use, smoking and obesity categories. In the first graph people who drink alcohol “sometimes” make up a large portion of the higher obesity categories, especially Obesity Type III and Overweight Level I. In the second graph, smokers make up a small portion of the dataset overall, but they appear slightly more in some obesity categories like Obesity Type I and II.</p>
-<p>In both the multinomial and LASSO models, smoking and not drinking alcohol were selected as predictors in a few obesity categories. However, LASSO removed many of the related terms, and other variables like diet, physical activity, and family history were kept more consistently. So while smoking and alcohol show some connection to obesity, the models suggest they’re not the strongest predictors on their own. This highlights that these habits might play a role, but they work alongside many other factors when it comes to predicting obesity.</p>
 <section id="limitations-and-future-work" class="level3">
 <h3 class="anchored" data-anchor-id="limitations-and-future-work">Limitations and Future Work</h3>
 <p>Even though the models in this project did really well overall, there are still a few important limitations. One of the main things is that it’s hard to tell how much smoking and alcohol really affect obesity on their own. Since the models included a bunch of other lifestyle factors, it’s not easy to separate out their impact. SMOKE and CALC showed up as important in some categories, but not all, and LASSO even removed a few of them completely. That makes it seem like they might not be super strong predictors by themselves, or maybe their effect depends on other things like diet or physical activity.</p>
