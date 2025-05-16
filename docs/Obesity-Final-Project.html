@@ -140,10 +140,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#main-objective" id="toc-main-objective" class="nav-link" data-scroll-target="#main-objective">Main Objective</a></li>
   <li><a href="#packages-used-in-this-analysis" id="toc-packages-used-in-this-analysis" class="nav-link" data-scroll-target="#packages-used-in-this-analysis">Packages Used In This Analysis</a></li>
   <li><a href="#data-description" id="toc-data-description" class="nav-link" data-scroll-target="#data-description">Data Description</a></li>
+  <li><a href="#data-limitations" id="toc-data-limitations" class="nav-link" data-scroll-target="#data-limitations">Data Limitations</a></li>
   <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
   <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
   <li><a href="#modeling" id="toc-modeling" class="nav-link" data-scroll-target="#modeling">Modeling</a></li>
   <li><a href="#insights" id="toc-insights" class="nav-link" data-scroll-target="#insights">Insights</a></li>
+  <li><a href="#limitations-and-future-work" id="toc-limitations-and-future-work" class="nav-link" data-scroll-target="#limitations-and-future-work">Limitations and Future Work</a></li>
   </ul>
 </nav>
 </nav>
@@ -173,14 +175,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="motivation-and-context" class="level2">
 <h2 class="anchored" data-anchor-id="motivation-and-context">Motivation and Context</h2>
-<p>This project explores how lifestyle habits like drinking alcohol and smoking may be related to different levels of obesity. Obesity is a major health concern that can lead to serious conditions such as heart disease, diabetes, and certain types of cancer. While many factors can affect a person’s weight, behaviors like drinking and smoking are common and often overlooked when it comes to their possible impact on health.</p>
-<p>I chose this topic because it connects real world health issues with data analysis. I wanted to better understand whether habits like alcohol use or smoking are linked to obesity, and if so, how strong those connections are. This kind of information can be helpful not just for individuals who want to learn more about their own health, but also for doctors, public health professionals, or policy makers who want to support healthier communities. By using data and statistical models, this project aims to uncover patterns that can make those links clearer and more understandable.</p>
-<p>In this dataset, obesity is divided into seven categories which are: Insufficient Weight, Normal Weight, Overweight Level I, Overweight Level II, Obesity Type I, Obesity Type II, and Obesity Type III. These categories are based on body measurements like weight and height, similar to how Body Mass Index (BMI) is used in medical setting. For example, “Normal Weight” represents a healthy range, while “Overweight Levels I and II” suggest increasing excess weight. “Obesity Types I, II, and III” indicate progressively higher degrees of obesity, with Type III being the most extreme. Understanding how lifestyle behaviors show up across these categories can help reveal what role habits like drinking and smoking might play in influencing a person’s weight and overall health.</p>
+<p>This project explores how lifestyle habits like drinking alcohol and smoking may be related to different levels of obesity. Obesity is a major health concern that can lead to serious conditions such as heart disease, diabetes, and certain types of cancer. While many factors can affect a person’s weight, habits like drinking and smoking are common and often overlooked in discussions about health.</p>
+<p>I chose this topic because it connects real world health issues with data analysis. I wanted to better understand whether alcohol use or smoking are linked to obesity, and if so, how strong those connections are. This kind of information can be helpful not just for individuals who want to learn more about their own health, but also for doctors, public health professionals, or policy makers who want to support healthier communities. By using data and statistical models, this project aims to uncover patterns that can make those links clearer.</p>
+<p>In this dataset, obesity is divided into seven categories: Insufficient Weight, Normal Weight, Overweight Level I, Overweight Level II, Obesity Type I, Obesity Type II, and Obesity Type III. These are based on physical measurements like weight and height, similar to how BMI is used in medical setting. For example, “Normal Weight” represents a healthy range, while “Overweight Levels I and II” suggest increasing excess weight. “Obesity Types I, II, and III” indicate progressively higher degrees of obesity, with Type III being the most extreme. Understanding how behaviors like smoking and drinking appear across these categories can help reveal what role they might play in a person’s weight and overall health.</p>
 </section>
 <section id="main-objective" class="level2">
 <h2 class="anchored" data-anchor-id="main-objective">Main Objective</h2>
-<p>The main goal of this project is to investigate how alcohol consumption and smoking relate to obesity levels. I wanted to see whether these habits are useful for predicting which obesity category a person falls into, and whether they still matter when other lifestyle variables are also considered. By analyzing these variables in full models, the project uncovers patterns that show how everyday decisions may relate to obesity risk.</p>
-<p>This analysis is meant to provide insight into whether drinking and smoking are just common lifestyle factors or if they actually contribute to higher obesity risk. The findings could be helpful for individuals trying to make healthier choices, as well as for professionals working in health education or policy.</p>
+<p>The main goal of this project is to investigate if alcohol consumption and smoking relate to obesity levels. I wanted to see whether these habits are useful for predicting which obesity category a person falls into, and whether they still matter when other lifestyle variables are also considered. By analyzing these variables in full models, the project uncovers patterns that show how everyday decisions may relate to obesity risk.</p>
+<p>This analysis is meant to provide insight into whether drinking and smoking are just common lifestyle factors or if they actually contribute to higher obesity risk.</p>
 </section>
 <section id="packages-used-in-this-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="packages-used-in-this-analysis">Packages Used In This Analysis</h2>
@@ -256,72 +258,75 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="data-description" class="level2">
 <h2 class="anchored" data-anchor-id="data-description">Data Description</h2>
-<p>The data used in this project comes from the UCI Machine Learning Repository, and it is titled Estimation of Obesity Levels Based on Eating Habits and Physical Condition. This dataset can be accessed <a href="https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition">here</a>. The dataset was created by researchers Fabio Palechor and Alexis de la Hoz Manotas and published around 2018. The data was collected using a web based survey where anonymous individuals from Mexico, Peru and Colombia reported information about their lifestyle habits and physical conditions. Participants were between the ages of 14 and 61 and answered questions related to eating behavior, exercise, water intake, alcohol consumption, smoking and more.</p>
-<p>The goal of the original study was to explore the relationship between these lifestyle factors and obesity. In total, the dataset includes 2,111 observations with 17 variables. The target variable, <code>NObeyesdad</code>, classifies individuals into one of the seven categories that range from Insufficient Weight to Obesity Type III. These categories are based on physical measurements like height and weight and are structured similarly to BMI based classifications.</p>
-<p>To improve class balance, the researches used SMOTE (Synthetic Minority Over-sampling Technique) in Weka to generate 77% of the data synthetically. The remaining 23% comes from real survey responses. SMOTE helps ensure that all obesity categories are well represented in the data, which can help models perform more reliably across all classes.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>obesity <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"ObesityDataSet_raw_and_data_sinthetic.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="data-limitations" class="level3">
-<h3 class="anchored" data-anchor-id="data-limitations">Data Limitations</h3>
+<p>The data used in this project comes from the UCI Machine Learning Repository, and it is titled Estimation of Obesity Levels Based on Eating Habits and Physical Condition. This dataset can be accessed <a href="https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition">here</a>. It was created by researchers Fabio Palechor and Alexis de la Hoz Manotas and published around 2018. The data was collected using a web based survey where anonymous participants from Mexico, Peru and Colombia reported information about their lifestyle habits and physical conditions. Participants were between the ages of 14 and 61 and answered questions related to eating behavior, water intake, alcohol consumption, smoking and more.</p>
+<p>The goal of the original study was to explore how these lifestyle factors relate to obesity. The dataset includes 2,111 observations and 17 variables. The otucome variable, <code>NObeyesdad</code>, classifies individuals into one of the seven categories that range from Insufficient Weight to Obesity Type III. These categories are based on physical measurements like height and weight and are structured similarly to BMI classifications.</p>
+<p>To improve class balance, the researches used SMOTE (Synthetic Minority Over-sampling Technique) in Weka to generate 77% of the data synthetically. The remaining 23% comes from real survey responses. This approach helps ensure that all obesity categories are well represented, which can improve model performance across the full range of outcomes.</p>
 </section>
+<section id="data-limitations" class="level2">
+<h2 class="anchored" data-anchor-id="data-limitations">Data Limitations</h2>
+<ul>
+<li><p>77% of the data was synthetically generated using SMOTE to balance the obesity categories. While this helps with modeling, it may not fully reflect real world variation, especially since it’s unclear which classes were originally underrepresented.</p></li>
+<li><p>The data is self reported which can lead to inaccurate answers, especially on sensitive topics like smoking or drinking.</p></li>
+<li><p>The dataset only includes individuals from Mexico, Peru and Colombia, so the results may not apply to other populations. There can be important factors like socioeconomic status that are also missing.</p></li>
+<li><p>The dataset doesn’t define what each obesity category means, which makes interpretation more difficult.</p></li>
+</ul>
 </section>
 <section id="data-wrangling" class="level2">
 <h2 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># converting character variables to factors</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>obesity <span class="ot">&lt;-</span> obesity <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># splitting data</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>obesity_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(obesity, <span class="at">prop =</span> <span class="fl">0.80</span>)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>obesity_train <span class="ot">&lt;-</span> <span class="fu">training</span>(obesity_split)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>obesity_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(obesity_split)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>obesity_train <span class="ot">&lt;-</span> obesity_train <span class="sc">|&gt;</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">hist_overweight =</span> family_history_with_overweight)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>obesity_test <span class="ot">&lt;-</span> obesity_test <span class="sc">|&gt;</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">hist_overweight =</span> family_history_with_overweight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># converting character variables to factors</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>obesity <span class="ot">&lt;-</span> obesity <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.character), as.factor))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># splitting data</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>obesity_split <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(obesity, <span class="at">prop =</span> <span class="fl">0.80</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>obesity_train <span class="ot">&lt;-</span> <span class="fu">training</span>(obesity_split)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>obesity_test <span class="ot">&lt;-</span> <span class="fu">testing</span>(obesity_split)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>total_missing <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(obesity_train))</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>total_missing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>total_missing <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(obesity_train))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>total_missing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>obesity_train <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">miss_var_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>obesity_train <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">miss_var_summary</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 17 × 3
-   variable        n_miss pct_miss
-   &lt;chr&gt;            &lt;int&gt;    &lt;num&gt;
- 1 Gender               0        0
- 2 Age                  0        0
- 3 Height               0        0
- 4 Weight               0        0
- 5 hist_overweight      0        0
- 6 FAVC                 0        0
- 7 FCVC                 0        0
- 8 NCP                  0        0
- 9 CAEC                 0        0
-10 SMOKE                0        0
-11 CH2O                 0        0
-12 SCC                  0        0
-13 FAF                  0        0
-14 TUE                  0        0
-15 CALC                 0        0
-16 MTRANS               0        0
-17 NObeyesdad           0        0</code></pre>
+   variable                       n_miss pct_miss
+   &lt;chr&gt;                           &lt;int&gt;    &lt;num&gt;
+ 1 Gender                              0        0
+ 2 Age                                 0        0
+ 3 Height                              0        0
+ 4 Weight                              0        0
+ 5 family_history_with_overweight      0        0
+ 6 FAVC                                0        0
+ 7 FCVC                                0        0
+ 8 NCP                                 0        0
+ 9 CAEC                                0        0
+10 SMOKE                               0        0
+11 CH2O                                0        0
+12 SCC                                 0        0
+13 FAF                                 0        0
+14 TUE                                 0        0
+15 CALC                                0        0
+16 MTRANS                              0        0
+17 NObeyesdad                          0        0</code></pre>
 </div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure outcome variable is a factor</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>obesity_train<span class="sc">$</span>NObeyesdad <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(obesity_train<span class="sc">$</span>NObeyesdad)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>obesity_test<span class="sc">$</span>NObeyesdad <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(obesity_test<span class="sc">$</span>NObeyesdad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="exploratory-data-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h2>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train, </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad)) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">fill =</span> <span class="st">"lightblue"</span>) <span class="sc">+</span></span>
@@ -329,11 +334,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Obesity Category"</span>,</span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="Obesity-Final-Project_files/figure-html/obesity categories-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>This distribution of individuals across obesity categories is fairly balanced, with slightly more cases in the Obesity Type I-III groups. This makes sense since SMOTE was used to generate synthetic data and balance the classes.</p>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train, </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, <span class="at">y =</span> Weight)) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
@@ -343,11 +352,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Weight (kg)"</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+<p><img src="Obesity-Final-Project_files/figure-html/weight distribution by obesity category-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>The weight distribution increases clearly across the obesity categories, showing a strong relationship between higher weight are more severe obesity levels. This helps confirm that the target variable aligns logically with actual weight measurements.</p>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train,</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, <span class="at">fill =</span> CALC)) <span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
@@ -357,11 +370,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Alcohol Consumption"</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="Obesity-Final-Project_files/figure-html/alcohol and obesity categories-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Most individuals across obesity categories reported drinking alcohol “sometimes” with a drop in “no” responses as obesity levels increase. This might suggest a loose association between occasional alcohol use and higher obesity levels.</p>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, <span class="at">fill =</span> SMOKE)) <span class="sc">+</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
@@ -371,11 +388,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Smoke"</span></span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span> ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="Obesity-Final-Project_files/figure-html/smoking and obesity categories-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
+<p>Most individuals across all obesity categories reported not smoking, with only a small portion indicating that they do. This suggests smoking may not be a common behavior in the sample, making its relationship to obesity harder to detect visually.</p>
 <div class="cell">
+<details>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train,</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad,</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> FAF)) <span class="sc">+</span></span>
@@ -386,154 +407,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Physical Activity Frequency (FAF)"</span></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <p><img src="Obesity-Final-Project_files/figure-html/physical activity and obesity category-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>obesity_train <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(NObeyesdad) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">total =</span> <span class="fu">n</span>(),</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(FAF, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(FAF, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">median =</span> <span class="fu">median</span>(FAF, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(FAF, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(FAF, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(FAF, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(FAF, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 7 × 9
-  NObeyesdad          total   min     Q1 median    Q3   max  mean    sd
-  &lt;fct&gt;               &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 Insufficient_Weight   223     0 0.520   1.49   2        3 1.30  0.856
-2 Normal_Weight         223     0 0       1      2        3 1.31  1.04 
-3 Obesity_Type_I        259     0 0.0603  1      1.81     3 1.03  0.918
-4 Obesity_Type_II       244     0 0.611   1.02   1.39     2 1.00  0.579
-5 Obesity_Type_III      262     0 0       0.214  1.43     2 0.639 0.719
-6 Overweight_Level_I    233     0 0.379   1      1.68     3 1.08  0.856
-7 Overweight_Level_II   244     0 0.106   1      1.47     3 0.974 0.842</code></pre>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  obesity_train, </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> Height,</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">y =</span> Weight, </span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">color =</span> NObeyesdad)) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Height vs. Weight by Obesity Category"</span>,</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Height (m)"</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Weight (kg)"</span>,</span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Obesity Category"</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"right"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/weight and height with obesity category-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  obesity_train, </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(<span class="at">x =</span> NCP)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1</span>, <span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Distribution of Number of Main Meals (NCP)"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Number of Main Meals"</span>,</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/number of main meals and obesity category-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train, <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">y =</span> NCP)) <span class="sc">+</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lavender"</span>) <span class="sc">+</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Number of Main Meals (NCP) by Obesity Category"</span>,</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Category"</span>,</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Number of Main Meals (NCP)"</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/main meals and obesity category-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">fill =</span> hist_overweight)) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Family History of Overweight by Obesity Category"</span>,</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Category"</span>,</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Family History"</span></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/family history of overweight-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train, </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, <span class="at">fill =</span> FAVC)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"High-Calorie Food Consumption (FAVC) by Obesity Category"</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Category"</span>,</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"FAVC"</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train, <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, <span class="at">y =</span> FCVC)) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"lightgreen"</span>) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Vegetable Consumption (FCVC) by Obesity Category"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Category"</span>,</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency of Vegetable Consumption"</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(obesity_train, <span class="fu">aes</span>(<span class="at">x =</span> NObeyesdad, <span class="at">fill =</span> CAEC)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Eating Between Meals (CAEC) by Obesity Category"</span>,</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Obesity Category"</span>,</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Count"</span>,</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"CAEC"</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
+<p>While this project mainly focuses on alcohol consumption and smoking, physical activity (<code>FAF</code>) is another lifestyle factor that was included in the models. The plot shows some variation in physical activity across obesity categories, but this variable was not a primary focus in the analysis.</p>
 </section>
 <section id="modeling" class="level2">
 <h2 class="anchored" data-anchor-id="modeling">Modeling</h2>
 <p><strong>Multinomial Logistic Regression</strong></p>
-<p>In this section, I build and evaluate models to predict an individual’s obesity category based on their lifestyle habits. I start with a multinomial logistic regression model because it allows me to model a categorical outcome with more than two classes. This model is also interpretable because it provides coefficients that show how predictors affect the odds of being in a specific obesity category compared to a reference group. This helps me understand how variables like alcohol consumption (<code>CALC</code>) and smoking (<code>SMOKE</code>) are related to different obesity levels and whether those behaviors are associated with increased risk.</p>
+<p>I started with a multinomial logistic regression model because it works well for outcomes with more than two categories. It’s also easy to interpret since it gives coefficients that show how each predictor affects the odds of being in a certain obesity category compared to a reference group. This helps me see whether alcohol (<code>CALC</code>)use and smoking (<code>SMOKE</code>) are linked to different obesity levels and how strong those links are.</p>
+<p>Before fitting the model, I removed <code>Height</code> and <code>Weight</code> from the predictors to avoid overly large coefficient values that could inflate model accuracy. I then fit a multinomial logistic regression model using all remaining predictors to classify individuals into one of the seven obesity categories.</p>
+<p>To understand how alcohol and smoking were associated with obesity, I extracted and filtered the model output to only show the coefficients related to <code>SMOKE</code> and <code>CALC</code>. The estimates show how much more (or less) likely someone is to be in a given category compared to the reference, based on those behaviors.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure outcome variable is a factor</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>obesity_train<span class="sc">$</span>NObeyesdad <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(obesity_train<span class="sc">$</span>NObeyesdad)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>obesity_test<span class="sc">$</span>NObeyesdad <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(obesity_test<span class="sc">$</span>NObeyesdad)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all predictors to model the 7-category outcome</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>multinom_model <span class="ot">&lt;-</span> <span class="fu">multinom</span>(NObeyesdad <span class="sc">~</span> . <span class="sc">-</span> Height <span class="sc">-</span> Weight, <span class="at">data =</span> obesity_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all predictors to model the 7-category outcome</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>multinom_model <span class="ot">&lt;-</span> <span class="fu">multinom</span>(NObeyesdad <span class="sc">~</span> . <span class="sc">-</span> Height <span class="sc">-</span> Weight, <span class="at">data =</span> obesity_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># weights:  161 (132 variable)
 initial  value 3284.696332 
@@ -550,36 +439,42 @@ iter 100 value 1672.112474
 final  value 1672.112474 
 stopped after 100 iterations</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(multinom_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>tidy_multinom <span class="ot">&lt;-</span> <span class="fu">tidy</span>(multinom_model)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>smoke_calc <span class="ot">&lt;-</span> tidy_multinom <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SMOKEyes"</span>, <span class="st">"CALCno"</span>, <span class="st">"CALCsometimes"</span>, <span class="st">"CALCalways"</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>smoke_calc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 132 × 6
-   y.level       term               estimate std.error statistic  p.value
-   &lt;chr&gt;         &lt;chr&gt;                 &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
- 1 Normal_Weight (Intercept)           9.70     1.16        8.39 4.92e-17
- 2 Normal_Weight GenderMale            0.792    0.258       3.07 2.14e- 3
- 3 Normal_Weight Age                   0.210    0.0384      5.46 4.78e- 8
- 4 Normal_Weight hist_overweightyes    0.549    0.249       2.21 2.73e- 2
- 5 Normal_Weight FAVCyes              -0.470    0.292      -1.61 1.07e- 1
- 6 Normal_Weight FCVC                 -0.648    0.210      -3.09 2.02e- 3
- 7 Normal_Weight NCP                  -0.505    0.149      -3.38 7.25e- 4
- 8 Normal_Weight CAECFrequently       -3.03     0.826      -3.67 2.39e- 4
- 9 Normal_Weight CAECno               -1.78     1.17       -1.52 1.29e- 1
-10 Normal_Weight CAECSometimes        -2.16     0.807      -2.67 7.50e- 3
-# ℹ 122 more rows</code></pre>
+<pre><code># A tibble: 12 × 6
+   y.level             term     estimate std.error statistic   p.value
+   &lt;chr&gt;               &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+ 1 Normal_Weight       SMOKEyes    14.8      0.651     22.8  3.85e-115
+ 2 Normal_Weight       CALCno      -8.86     0.508    -17.4  4.29e- 68
+ 3 Obesity_Type_I      SMOKEyes    13.4      0.752     17.9  1.74e- 71
+ 4 Obesity_Type_I      CALCno      -1.37     0.578     -2.36 1.81e-  2
+ 5 Obesity_Type_II     SMOKEyes    14.5      0.760     19.0  7.90e- 81
+ 6 Obesity_Type_II     CALCno      -5.70     0.776     -7.34 2.14e- 13
+ 7 Obesity_Type_III    SMOKEyes    11.6      1.62       7.17 7.28e- 13
+ 8 Obesity_Type_III    CALCno     -28.3      3.38      -8.37 5.56e- 17
+ 9 Overweight_Level_I  SMOKEyes    11.9      1.04      11.4  2.38e- 30
+10 Overweight_Level_I  CALCno      -1.28     0.578     -2.21 2.73e-  2
+11 Overweight_Level_II SMOKEyes    13.7      0.641     21.3  7.66e-101
+12 Overweight_Level_II CALCno       1.57     0.606      2.59 9.57e-  3</code></pre>
 </div>
 </div>
+<p>The coefficients for <code>SMOKEyes</code> are all positive and significant which means smoking is pretty strongly linked to higher obesity categories. For alcohol, the results are less clear. <code>CALCno</code> (people who don’t drink) had a mix, some categories showed a strong negative relationship, while others didn’t show much. So overall, smoking seems to have a more consistent impact than alcohol.</p>
+<p>I used the model to predict obesity categories on the test set and created a confusion matrix to see how well the predictions matched the actual values. This helps show which categories the model got right and where it made mistakes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># predict on obesity category for each oberservation</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>multinom_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(multinom_model, <span class="at">newdata =</span> obesity_test)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># results tibble true and predicted labels </span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>multinom_results <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> obesity_test<span class="sc">$</span>NObeyesdad,</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">prediction =</span> multinom_preds</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="co"># evaluate the model performance</span></span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(multinom_results, <span class="at">truth =</span> truth, <span class="at">estimate =</span> prediction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># predict on obesity category for each oberservation</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>multinom_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(multinom_model, <span class="at">newdata =</span> obesity_test)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># results tibble true and predicted labels </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>multinom_results <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> obesity_test<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">prediction =</span> multinom_preds</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># evaluate the model performance</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(multinom_results, <span class="at">truth =</span> truth, <span class="at">estimate =</span> prediction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                     Truth
 Prediction            Insufficient_Weight Normal_Weight Obesity_Type_I
@@ -610,9 +505,9 @@ Prediction            Overweight_Level_II
   Overweight_Level_II                  15</code></pre>
 </div>
 </div>
-<p>Based on the confusion matrix, the model did a really good job predicting most of the obesity categories correctly. It was especially accurate for Obesity Type I, II, and III, where the predictions were almost perfect. There were a few mistakes, mainly between categories that are close to each other, like Normal Weight being confused with Overweight Level I or Overweight Level II being confused with Obesity Type I. That kind of mix-up makes sense since those groups might have similar habits or measurements. Overall, the model is performing very well across all obesity categories.</p>
+<p>This confusion matrix shows that the model did a solid job overall, especially for the extreme groups like Obesity Type III and Obesity Type I, where most predictions were correct. You can see that Obesity Type III had 62 correct predictions and no major confusion. There was a bit more mixing between Normal Weight, Overweight Levels, and Obesity Type I, which makes sense since those groups are probably harder to tell apart based on habits. Overweight Level II was a little more difficult, it got confused the most with the Obesity Types I and II. Still, the model overall handled most categories well.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(multinom_results, <span class="at">truth =</span> truth, <span class="at">estimate =</span> prediction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(multinom_results, <span class="at">truth =</span> truth, <span class="at">estimate =</span> prediction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
@@ -620,70 +515,40 @@ Prediction            Overweight_Level_II
 1 accuracy multiclass     0.631</code></pre>
 </div>
 </div>
-<p>I used accuracy and a confusion matrix to evaluate how well the model performed. Accuracy is a common and simple metric that tells me what proportion of the predictions were correct overall. It’s calculated by dividing the number of correct predictions by the total number of predictions. I also included a confusion matrix because accuracy alone doesn’t always show how the model did for each specific class. The confusion matrix helps me see which categories were predicted correctly and which ones the model mixed up, so I can tell if it’s doing well across all obesity levels.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>tidy_multinom <span class="ot">&lt;-</span> <span class="fu">tidy</span>(multinom_model)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>smoke_calc <span class="ot">&lt;-</span> tidy_multinom <span class="sc">|&gt;</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SMOKEyes"</span>, <span class="st">"CALCno"</span>, <span class="st">"CALCsometimes"</span>, <span class="st">"CALCalways"</span>))</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>smoke_calc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 12 × 6
-   y.level             term     estimate std.error statistic   p.value
-   &lt;chr&gt;               &lt;chr&gt;       &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
- 1 Normal_Weight       SMOKEyes    14.8      0.651     22.8  3.85e-115
- 2 Normal_Weight       CALCno      -8.86     0.508    -17.4  4.29e- 68
- 3 Obesity_Type_I      SMOKEyes    13.4      0.752     17.9  1.74e- 71
- 4 Obesity_Type_I      CALCno      -1.37     0.578     -2.36 1.81e-  2
- 5 Obesity_Type_II     SMOKEyes    14.5      0.760     19.0  7.90e- 81
- 6 Obesity_Type_II     CALCno      -5.70     0.776     -7.34 2.14e- 13
- 7 Obesity_Type_III    SMOKEyes    11.6      1.62       7.17 7.28e- 13
- 8 Obesity_Type_III    CALCno     -28.3      3.38      -8.37 5.56e- 17
- 9 Overweight_Level_I  SMOKEyes    11.9      1.04      11.4  2.38e- 30
-10 Overweight_Level_I  CALCno      -1.28     0.578     -2.21 2.73e-  2
-11 Overweight_Level_II SMOKEyes    13.7      0.641     21.3  7.66e-101
-12 Overweight_Level_II CALCno       1.57     0.606      2.59 9.57e-  3</code></pre>
-</div>
-</div>
-<p>The model shows that both smoking and alcohol habits are related to obesity. The coefficients for <code>SMOKEyes</code> were large and positive across all categories, meaning smokers had much higher odds of being classified as overweight or obese compared to the baseline group. For alcohol, the results were more surprising. People who said they don’t drink (<code>CALCno</code>) also had higher odds of being classified in an obesity category. This might be due to how alcohol use is reported or other lifestyle factors in the data. Overall, both variables were statistically significant and stood out as important predictors in the model.</p>
-<p>Even though my main goal was to understand the impact of smoking and alcohol on obesity, I included other lifestyle variables in the model because they can also affect weight. This makes the model more realistic and helps me see whether smoking and alcohol still matter when everything else is taken into account. Based on the results, both <code>SMOKE</code> and <code>CALC</code> were still strong predictors even after controlling for things like exercise, diet, and family history.</p>
+<p>I used accuracy and a confusion matrix to evaluate how well the model performed. Accuracy is a simple and common metric that shows what proportion of the predictions were correct overall. It’s calculated by dividing the number of correct predictions by the total number of predictions. I also included a confusion matrix because accuracy alone doesn’t always show how the model did for each specific class. The confusion matrix helps me see which categories were predicted correctly and which ones the model mixed up, so I can tell if it’s doing well across all obesity levels.</p>
 <p><strong>LASSO</strong></p>
 <p>To complement the multinomial regression model, I also use a LASSO model. LASSO works by shrinking the coefficients of less important predictors all the way to zero. This means it automatically removes variables that don’t contribute to much to predicting the outcome. I wanted to see if whether smoking and alcohol consumption would still be selected as important predictors after the model was simplified.</p>
-<p>I created the model, recipe and workflow as shown below. Categorical variables were converted into dummy variables and all numeric variables were standardized to the same scale since LASSO is sensitive to variable scaling.</p>
+<p>I created the model, recipe and workflow as shown below. Categorical variables were converted into dummy variables and all numeric variables were standardized to the same scale since LASSO is sensitive to variable scaling. I also removed <code>Height</code> and <code>Weight</code> so we can see what LASSO selects without those variables dominating the model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>lasso_model <span class="ot">&lt;-</span> <span class="fu">multinom_reg</span>(<span class="at">mode =</span> <span class="st">"classification"</span>, <span class="at">engine =</span> <span class="st">"glmnet"</span>,</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">penalty =</span> <span class="fu">tune</span>(),</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">mixture =</span> <span class="dv">1</span>) <span class="co"># 1 is LASSO</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>lasso_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(NObeyesdad <span class="sc">~</span> ., <span class="at">data =</span> obesity_train) <span class="sc">|&gt;</span></span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(Height, Weight) <span class="sc">|&gt;</span></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span> <span class="co"># since they are categorical </span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="co"># same scale </span></span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>lasso_wflow <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lasso_model) <span class="sc">|&gt;</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(lasso_recipe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>lasso_model <span class="ot">&lt;-</span> <span class="fu">multinom_reg</span>(<span class="at">mode =</span> <span class="st">"classification"</span>, <span class="at">engine =</span> <span class="st">"glmnet"</span>,</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                          <span class="at">penalty =</span> <span class="fu">tune</span>(),</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">mixture =</span> <span class="dv">1</span>) <span class="co"># 1 is LASSO</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>lasso_recipe <span class="ot">&lt;-</span> <span class="fu">recipe</span>(NObeyesdad <span class="sc">~</span> ., <span class="at">data =</span> obesity_train) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_rm</span>(Height, Weight) <span class="sc">|&gt;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_dummy</span>(<span class="fu">all_nominal_predictors</span>()) <span class="sc">|&gt;</span> <span class="co"># since they are categorical </span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_normalize</span>(<span class="fu">all_numeric_predictors</span>()) <span class="co"># same scale </span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>lasso_wflow <span class="ot">&lt;-</span> <span class="fu">workflow</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_model</span>(lasso_model) <span class="sc">|&gt;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_recipe</span>(lasso_recipe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>I used 5 fold cross validation to tune the penalty parameter. I tested 25 (arbitrarily) different values and selected the final model using the one-standard-error rule, which prefers a simpler model that still performs well.</p>
+<p>I used 5 fold cross validation to tune the penalty parameter. I tested 25 different values to give the model a good range of penalty values to try without making the tuning process take too long and selected the final model using the one-standard-error rule, which prefers a simpler model that still performs well.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>cv_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(obesity_train, <span class="at">v =</span> <span class="dv">5</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>lasso_tune <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  lasso_wflow,</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> <span class="dv">25</span>  <span class="co"># different values</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cv_folds <span class="ot">&lt;-</span> <span class="fu">vfold_cv</span>(obesity_train, <span class="at">v =</span> <span class="dv">5</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>lasso_tune <span class="ot">&lt;-</span> <span class="fu">tune_grid</span>(</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  lasso_wflow,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">resamples =</span> cv_folds,</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">grid =</span> <span class="dv">25</span>  <span class="co"># different values</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>I picked the final penalty using the one-standard-error rule, which favors a simper model that still performs well.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>lasso_best <span class="ot">&lt;-</span> lasso_tune <span class="sc">|&gt;</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_by_one_std_err</span>(penalty, <span class="fu">desc</span>(penalty))</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>lasso_wflow_final <span class="ot">&lt;-</span> lasso_wflow <span class="sc">|&gt;</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(<span class="at">parameters =</span> lasso_best) </span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>lasso_fit <span class="ot">&lt;-</span> lasso_wflow_final <span class="sc">|&gt;</span></span>
-<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> obesity_train)</span>
-<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>lasso_best</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>lasso_best <span class="ot">&lt;-</span> lasso_tune <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_by_one_std_err</span>(penalty, <span class="fu">desc</span>(penalty))</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>lasso_best</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
    penalty .config              
@@ -691,62 +556,39 @@ Prediction            Overweight_Level_II
 1 2.08e-10 Preprocessor1_Model01</code></pre>
 </div>
 </div>
-<p>The best penalty value selected by cross-validation was approximately 2.08e-10. Since this value is very small, it means the model applied only a small amount of shrinkage, allowing most of the predictors to remain in the model. This suggests that many variables in the dataset were helpful for predicting obesity categories, and not many were removed by LASSO.</p>
+<p>The LASSO model chose a very small penalty, which means most variables were kept in the model instead of being shrunk to zero.</p>
+<p>I graphed the mean accuracy for each penalty value tested during cross validation. This helped me visualize how model performance changed as penalty increased.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot coefficient paths across penalty values</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>lasso_fit <span class="sc">|&gt;</span> </span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">extract_fit_engine</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot</span>(<span class="at">xvar =</span> <span class="st">"lambda"</span>, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>lasso_tune <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">collect_metrics</span>() <span class="sc">|&gt;</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(.metric <span class="sc">==</span> <span class="st">"accuracy"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> penalty, <span class="at">y =</span> mean)) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Accuracy vs Penalty"</span>, <span class="at">x =</span> <span class="st">"Penalty"</span>, <span class="at">y =</span> <span class="st">"Mean Accuracy"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-27-3.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-27-4.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-27-5.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-27-6.png" class="img-fluid" width="672"></p>
-</div>
-<div class="cell-output-display">
-<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-27-7.png" class="img-fluid" width="672"></p>
+<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>The coefficient path plots show how the values of different predictors change as the penalty term increases. As the penalty increases (moving left to right), the model applies more shrinkage, and many coefficients are pulled closer to zero. This is how LASSO performs variable selection.</p>
-<p>In my case, most predictors stayed close to zero early on, meaning they weren’t very strong. However, some predictors remained further from zero longer, suggesting they were more important in predicting that specific obesity category. By looking at these plots, I was able to confirm that LASSO kept only the most useful predictors while filtering out the rest.</p>
-<p>After fitting the model, I extracted the coefficients and focused on <code>SMOKE</code> and <code>CALC</code> to see if they were selected by LASSO.</p>
+<p>This plot shows that accuracy stayed high for small penalties and dropped sharply once the penalty became to large. This means that smoking and alcohol likely contribute useful information.</p>
+<p>I finalized the LASSO model using the best penalty value from tuning, then fit the model to the training data for evaluation.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>lasso_coef <span class="ot">&lt;-</span> lasso_fit <span class="sc">|&gt;</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>()</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>lasso_coef </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 154 × 4
-   class               term                estimate  penalty
-   &lt;chr&gt;               &lt;chr&gt;                  &lt;dbl&gt;    &lt;dbl&gt;
- 1 Insufficient_Weight (Intercept)            2.32  2.08e-10
- 2 Insufficient_Weight Age                   -1.99  2.08e-10
- 3 Insufficient_Weight FCVC                   0.336 2.08e-10
- 4 Insufficient_Weight NCP                    0.398 2.08e-10
- 5 Insufficient_Weight CH2O                   0     2.08e-10
- 6 Insufficient_Weight FAF                    0.183 2.08e-10
- 7 Insufficient_Weight TUE                    0.485 2.08e-10
- 8 Insufficient_Weight Gender_Male           -0.396 2.08e-10
- 9 Insufficient_Weight hist_overweight_yes   -1.20  2.08e-10
-10 Insufficient_Weight FAVC_yes              -0.210 2.08e-10
-# ℹ 144 more rows</code></pre>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>lasso_wflow_final <span class="ot">&lt;-</span> lasso_wflow <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">finalize_workflow</span>(<span class="at">parameters =</span> lasso_best) </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>lasso_fit <span class="ot">&lt;-</span> lasso_wflow_final <span class="sc">|&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>(<span class="at">data =</span> obesity_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p>LASSO didn’t shrink that many coefficients to zero, which suggests that a lot of the variables in the dataset are actually useful for predicting obesity categories. This makes sense since the model is trying to classify people into seven different groups, so it needs a range of information to do that well. Even with regularization, LASSO still kept variables like smoking and alcohol, which shows they’re important predictors. The fact that many variables were kept means the model may be capturing more complex relationships between lifestyle habits and obesity levels.</p>
+<p>I extracted the LASSO model coefficients and filtered for the smoking and alcohol terms to see whether those variables were kept in the final model.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>lasso_coef <span class="sc">|&gt;</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SMOKE_yes"</span>, <span class="st">"CALC_no"</span>, <span class="st">"CALC_always"</span>, <span class="st">"CALC_sometimes"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>lasso_coef <span class="ot">&lt;-</span> lasso_fit <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  broom<span class="sc">::</span><span class="fu">tidy</span>()</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>lasso_coef <span class="sc">|&gt;</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SMOKE_yes"</span>, <span class="st">"CALC_no"</span>, <span class="st">"CALC_always"</span>, <span class="st">"CALC_sometimes"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 14 × 4
    class               term        estimate  penalty
@@ -767,63 +609,46 @@ Prediction            Overweight_Level_II
 14 Overweight_Level_II CALC_no    0.0363    2.08e-10</code></pre>
 </div>
 </div>
-<p>After using LASSO, only the CALC_no variable was kept in the model. The other alcohol-related categories like CALC_always and CALC_sometimes were removed, meaning they didn’t provide enough useful information for predicting obesity categories. This shows that not drinking alcohol had more predictive value than drinking occasionally or always, at least in this dataset.</p>
+<p>Based on the LASSO results, smoking appears to have a small but consistent relationship with obesity, while the only alcohol related variable that was helpful was “no alcohol.” This suggests that people who don’t drink may stand out more in terms of obesity risk, but overall, neither smoking nor alcohol showed strong predictive power on their own.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>lasso_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_fit, <span class="at">new_data =</span> obesity_test) <span class="sc">|&gt;</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>(obesity_test)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(lasso_preds, <span class="at">truth =</span> NObeyesdad, <span class="at">estimate =</span> .pred_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>lasso_preds <span class="ot">&lt;-</span> <span class="fu">predict</span>(lasso_fit, <span class="at">new_data =</span> obesity_test, <span class="at">type =</span> <span class="st">"class"</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>lasso_results <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">truth =</span> obesity_test<span class="sc">$</span>NObeyesdad,</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">prediction =</span> lasso_preds<span class="sc">$</span>.pred_class</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="fu">accuracy</span>(lasso_results, <span class="at">truth =</span> truth, <span class="at">estimate =</span> prediction)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   .metric  .estimator .estimate
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 1 accuracy multiclass     0.634</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">conf_mat</span>(lasso_preds, <span class="at">truth =</span> NObeyesdad, <span class="at">estimate =</span> .pred_class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                     Truth
-Prediction            Insufficient_Weight Normal_Weight Obesity_Type_I
-  Insufficient_Weight                  38            18              1
-  Normal_Weight                         5            26              3
-  Obesity_Type_I                        1             4             51
-  Obesity_Type_II                       2             2             15
-  Obesity_Type_III                      0             1              0
-  Overweight_Level_I                    1            10             12
-  Overweight_Level_II                   2             3             10
-                     Truth
-Prediction            Obesity_Type_II Obesity_Type_III Overweight_Level_I
-  Insufficient_Weight               0                0                  1
-  Normal_Weight                     0                0                 10
-  Obesity_Type_I                    1                0                  7
-  Obesity_Type_II                  50                0                  7
-  Obesity_Type_III                  0               62                  0
-  Overweight_Level_I                0                0                 26
-  Overweight_Level_II               2                0                  6
-                     Truth
-Prediction            Overweight_Level_II
-  Insufficient_Weight                   1
-  Normal_Weight                         2
-  Obesity_Type_I                       12
-  Obesity_Type_II                      14
-  Obesity_Type_III                      0
-  Overweight_Level_I                    2
-  Overweight_Level_II                  15</code></pre>
 </div>
-</div>
-<p>The LASSO model had an accuracy of about 96.2%, meaning it correctly predicted the obesity category for most of the people in the test set. This is a strong result, especially since there are seven different categories. It shows that even with regularization and some coefficients being removed, the model still did a really good job at classifying individuals based on their lifestyle habits.</p>
+<p>The LASSO model had an accuracy of about 63.4% which is very similar to the multinomial regression model’s accuracy of 63.1%. This shows that even though LASSO simplified the model by removing some predictors, it still performed just as well when it came to predicting the obesity categories.</p>
 </section>
 <section id="insights" class="level2">
 <h2 class="anchored" data-anchor-id="insights">Insights</h2>
-<section id="limitations-and-future-work" class="level3">
-<h3 class="anchored" data-anchor-id="limitations-and-future-work">Limitations and Future Work</h3>
-<p>Even though the models in this project did really well overall, there are still a few important limitations. One of the main things is that it’s hard to tell how much smoking and alcohol really affect obesity on their own. Since the models included a bunch of other lifestyle factors, it’s not easy to separate out their impact. SMOKE and CALC showed up as important in some categories, but not all, and LASSO even removed a few of them completely. That makes it seem like they might not be super strong predictors by themselves, or maybe their effect depends on other things like diet or physical activity.</p>
-<p>Another thing I ran into is that the dataset doesn’t explain what the different obesity categories actually mean even though at first I thought it did. It uses labels like “Obesity_Type_I” and “Overweight_Level_II,” but there’s no clear definition of what those mean or how different they are. That made it harder to really understand how serious each group is or what separates one from another.</p>
-<p>Also, the data is self-reported, which isn’t always reliable. People might leave things out or answer in a way that sounds better, especially for questions about smoking, drinking, or eating habits. On top of that, a lot of the data was synthetically generated using SMOTE (Synthetic Minority Oversampling TEchnique) to balance out the categories. That helps with modeling, but it might not reflect real-world responses as well as actual survey data.</p>
-<p>LASSO helped clean up the model by removing predictors that weren’t as helpful, but it didn’t shrink that many variables to zero. That could mean the variables really were useful, or that the penalty wasn’t strong enough to force more selection. Trying other models in the future, like decision trees or random forests, could help show which variables are actually the most important for predicting obesity. But for this project, the main goal was just to see whether smoking and alcohol had any noticeable connection to obesity, and both models helped explore that.</p>
-<p>In the future, it would help to have a dataset with more detailed health and lifestyle information, and one that clearly defines the outcome labels especially obesity levels. Since this project is about people’s health, it’s important to use results like these to support and inform one another, and not judge anyone based on which category they fit into</p>
-
-
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>lasso_coef <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"SMOKE_yes"</span>, <span class="st">"CALC_no"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> class, <span class="at">y =</span> estimate, <span class="at">fill =</span> term)) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"LASSO Coefficients for Smoking and No Alcohol"</span>,</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Obesity Category"</span>, <span class="at">y =</span> <span class="st">"Estimate"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Obesity-Final-Project_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This plot shows the LASSO coefficients for smoking and not drinking across obesity categories. Most of the coefficients are close to zero, and a few are only slightly positive or negative. This suggests that neither smoking nor alcohol consumption is a strong predictor of obesity in this dataset. While smoking was kept in more categories than alcohol, the effect sizes are still small, meaning it doesn’t consistently or strongly impact the odds of being in a specific obesity group. Overall, these behaviors don’t appear to explain much variation in obesity status on their own.</p>
 </section>
+<section id="limitations-and-future-work" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-and-future-work">Limitations and Future Work</h2>
+<p>One key limitation of my model is that it doesn’t predict certain obesity categories very well. For example, in the multinomial confusion matrix, some classes like Overweight Level II were often confused with other categories. This may be because the predictors used like smoking and alcohol consumption don’t carry enough unique information to clearly separate these groups.</p>
+<p>Another limitation is that I removed variables like <code>Height</code> and <code>Weight</code> and physical activity to focus just on lifestyle behaviors. While this helped isolate the effects of smoking and alcohol, it also meant that I left out some of the most predictive features, which most likely reduced model accuracy.</p>
+<p>Future work could explore adding more variables such as diet, exercise and many other factors to get a fuller picture of what contributes to obesity. Also, collecting real-world data instead of using synthetically balanced datasets might offer more realistic results.</p>
+
+
 </section>
 
 </main> <!-- /main -->
